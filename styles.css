@@ -1,0 +1,275 @@
+body {
+  font-family     : "Fira Mono", sans-serif;
+  background-color: beige;
+  margin          : 0;
+  padding         : 0;
+}
+
+.material-icons {
+  font-family   : 'Material Icons';
+  font-weight   : normal;
+  font-style    : normal;
+  font-size     : 24px;
+  /* Preferred icon size */
+  display       : inline-block;
+  line-height   : 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap     : normal;
+  white-space   : nowrap;
+  direction     : ltr;
+
+  /* https://fonts.google.com/icons */
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering        : optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+/*Burger Menu*/
+
+.header {
+  position        : sticky;
+  background-color: dimgrey;
+  width           : 100%;
+  margin          : 0 auto;
+  position        : fixed;
+  top             : 0;
+  height          : 60px;
+  overflow        : hidden;
+  z-index         : 100;
+
+}
+
+#burger {
+  width : 35px;
+  height: 35px;
+  top   : 22px;
+  left  : 10px;
+
+  cursor  : pointer;
+  position: fixed;
+
+}
+
+.bar {
+  height          : 5px;
+  width           : 100%;
+  background-color: black;
+  display         : block;
+  border-radius   : 5px;
+  transition      : 0.3s ease;
+}
+
+#bar1 {
+  transform: translateY(-4px);
+}
+
+#bar3 {
+  transform: translateY(4px);
+}
+
+.change .bar {
+  background-color: white;
+}
+
+.change #bar1 {
+  transform: translateY(4px) rotate(-45deg);
+}
+
+.change #bar3 {
+  transform: translateY(-6px) rotate(45deg);
+}
+
+.change #bar2 {
+  opacity: 0;
+}
+
+/*Sidebar*/
+
+#nav {
+  transform       : translateX(-50vw);
+  width           : 50vw;
+  height          : 100vh;
+  background-color: #111;
+  transition      : 0.3s ease;
+  z-index         : 100;
+  overflow        : hidden;
+  padding-top     : 60px;
+
+  top     : 60px;
+  position: fixed;
+
+}
+
+.change #nav {
+  transform: translateX(0px);
+}
+
+
+#nav ul li {
+  list-style: none;
+  padding   : 0.5em;
+  cursor    : pointer;
+
+}
+
+#nav ul li a {
+  color          : #818181;
+  text-decoration: none;
+  font-size      : 4rem;
+
+}
+
+#nav ul li a:hover {
+  transition: 0.3s ease;
+  color     : #f1f1f1;
+}
+
+/* content */
+
+main {
+  position: absolute;
+  top     : 60px;
+  margin  : 2.5%;
+  z-index : 1;
+}
+
+.bingo-grid {
+  margin               : 10vh auto;
+  display              : grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows   : repeat(5, 1fr);
+  grid-gap             : 1px;
+}
+
+.bingo-field {
+  position       : relative;
+  display        : flex;
+  justify-content: fill;
+  align-items    : fill;
+  border         : 1px solid;
+  font-size      : 1.5em;
+  text-align     : center;
+  aspect-ratio   : 1;
+  overflow       : hidden;
+}
+
+.bingo-field:hover {
+  background-color: lightgray;
+}
+
+.bingo-field div {
+  width          : 100%;
+  height         : 100%;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  transition     : .1s ease;
+
+}
+
+.bingo-field div span {
+  width          : 95%;
+  height         : 95%;
+  overflow-wrap  : break-word;
+  word-wrap      : break-word;
+  hyphens        : auto;
+  font-size      : 1.5vw;
+  justify-content: center;
+}
+
+.bingo-field input {
+  position: absolute;
+  width   : 100%;
+  height  : 100%;
+  opacity : 0;
+  cursor  : pointer;
+  padding : 1rem;
+}
+
+input[type=checkbox]:checked~div {
+  background-color: #50bcf2;
+}
+
+
+.button-container {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : center;
+}
+
+.button-container h1 {
+  font-size: 8em;
+}
+
+.btn {
+  display         : flex;
+  font-size       : 2em;
+  align-items     : center;
+  background-color: slategrey;
+  padding         : 1rem;
+  border-radius   : 0.5rem;
+}
+
+.text-btn {
+  padding-right: 1rem;
+}
+
+/* EDIT */
+
+#search {
+  font-size: 2em;
+  width    : 95vw;
+
+}
+
+.field-cards {
+  margin-top    : 1rem;
+  display       : flex;
+  flex-direction: column;
+}
+
+.card:first-of-type {
+  border-top: 1px solid #ccc;
+}
+
+.card {
+  display        : flex;
+  flex-direction : row;
+  justify-content: flex-end;
+  padding        : 1rem;
+  border-bottom  : 1px solid #ccc;
+}
+
+.card-text {
+  width: 100%;
+}
+
+.hide {
+  display: none;
+}
