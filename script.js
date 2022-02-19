@@ -1,7 +1,10 @@
-function onClickMenu() {
-  document.getElementById("burger").classList.toggle("change");
-  document.getElementById("nav").classList.toggle("change");
-  document.getElementById("nav-container").classList.toggle("change");
+function toggleSidebar() {
+  setTimeout(() => {
+    document.getElementById("nav").classList.toggle("show");
+    document.getElementById("screen-dim").classList.toggle("show");
+    document.getElementById("burger").classList.toggle("change");
+  }, 150);
+  //adjustable delay
 }
 
 const fieldTemplate = document.querySelector("[field-template]");
