@@ -10,7 +10,8 @@
 </head>
 
 <body>
-  <div id="screen-dim" onclick="toggleSidebar()"></div>
+  <div id="screen-dim1" class="screen-dim" onclick="toggleSidebar()"></div>
+  <div id="screen-dim2" class="screen-dim" onclick="toggleModal()"></div>
   <div class="header">
     <div id="burger" onclick="toggleSidebar()">
       <div id="bar1" class="bar"></div>
@@ -52,7 +53,24 @@
 
 
     </div>
-
+    <div class="modal" id="edit-modal">
+      <div class="modal-header">
+        <span>Edit</span>
+      </div>
+      <div class="modal-content">
+        <textarea maxlength="100" placeholder="add a field..." data-text-input></textarea>
+      </div>
+      <div class="modal-footer">
+        <a class="btn text-btn" data-save>
+          <span class="material-icons md-24">save</span>
+          <span>Save</span>
+        </a>
+        <a class="btn text-btn" data-cancel>
+          <span class="material-icons md-24">cancel</span>
+          <span>Cancel</span>
+        </a>
+      </div>
+    </div>
   </main>
 
 </body>
