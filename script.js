@@ -21,17 +21,17 @@ searchInput.addEventListener("input", (e) => {
   })
 })
 
-fetch("https://jsonplaceholder.typicode.com/posts")
+fetch("./data/fields.json")
   .then(res => res.json())
   .then(data => {
-    fields = data.map(post => {
+    fields = data["fields"].map(field => {
 
       const card = fieldTemplate.content.cloneNode(true).children[0];
       const cardText = card.querySelector("[data-text]");
-      cardText.textContent = post.body
+      cardText.textContent = field
       cardsContainer.append(card)
       return {
-        text: post.body, element: card
+        text: field, element: card
       }
     })
   })
