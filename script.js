@@ -39,7 +39,11 @@ fetch("./data/fields.json")
       const delbtn = card.querySelector("[data-delete]");
       const editbtn = card.querySelector("[data-edit]");
       const modal = document.querySelector("#edit-modal")
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 23b49641e3c503b4fb3cc921250267e20a530493
       const cancelbtn = modal.querySelector("[data-cancel]");
       const savebtn = modal.querySelector("[data-save]");
 
@@ -48,7 +52,11 @@ fetch("./data/fields.json")
       delbtn.addEventListener("click", () => {
         card.remove();
       });
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 23b49641e3c503b4fb3cc921250267e20a530493
       editbtn.addEventListener("click", () => {
         modal.querySelector("[data-text-input]").value = cardText.textContent;
         toggleModal();
@@ -59,12 +67,20 @@ fetch("./data/fields.json")
           document.getElementById("screen-dim2").classList.remove("show");
           document.getElementById("edit-modal").classList.remove("show");
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 23b49641e3c503b4fb3cc921250267e20a530493
         cancelbtn.addEventListener("click", () => {
           document.getElementById("screen-dim2").classList.remove("show");
           document.getElementById("edit-modal").classList.remove("show");
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 23b49641e3c503b4fb3cc921250267e20a530493
       });
 
       cardsContainer.append(card)
