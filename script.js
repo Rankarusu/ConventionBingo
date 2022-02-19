@@ -13,7 +13,6 @@ const searchInput = document.querySelector("[data-search]");
 
 let fields = []
 
-
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
   console.log(fields);
@@ -31,7 +30,14 @@ fetch("./data/fields.json")
 
       const card = fieldTemplate.content.cloneNode(true).children[0];
       const cardText = card.querySelector("[data-text]");
+      const delbtn = card.querySelector("[data-delete]");
+      const editbtn = card.querySelector("[data-edit]");
+
       cardText.textContent = field
+
+      delbtn.addEventListener("click", () => {
+        card.remove();
+      })
       cardsContainer.append(card)
       return {
         text: field, element: card
