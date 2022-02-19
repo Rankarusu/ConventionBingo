@@ -125,8 +125,8 @@ body {
 /*Sidebar*/
 
 #nav {
-  transform       : translateX(-50vw);
-  width           : 50vw;
+  transform       : translateX(-35vw);
+  width           : 30vw;
   height          : 100vh;
   background-color: #111;
   z-index         : 100;
@@ -166,13 +166,21 @@ body {
 /* content */
 
 main {
-  margin : auto;
-  padding: 60px 2rem;
-  z-index: 1;
+  margin   : auto;
+  padding  : 60px 2rem;
+  z-index  : 1;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 1080px) {
+  main {
+    padding: 60px 0.5rem;
+  }
 }
 
 .bingo-grid {
-  margin               : 10vh auto;
+  max-width            : 800px;
+  margin               : 2rem auto;
   display              : grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows   : repeat(5, 1fr);
@@ -199,18 +207,20 @@ main {
   display        : flex;
   justify-content: center;
   align-items    : center;
+  vertical-align : middle;
   transition     : .1s ease;
 
 }
 
 .bingo-field div span {
-  width          : 95%;
-  height         : 95%;
-  overflow-wrap  : break-word;
-  word-wrap      : break-word;
-  hyphens        : auto;
-  font-size      : 1.5vw;
-  justify-content: center;
+  width      : 95%;
+  height     : 95%;
+  display    : inline-flex;
+  align-items: center;
+  font-size  : 1rem;
+  word-wrap  : break-word;
+  hyphens    : auto;
+  /* TODO    : https://github.com/STRML/textFit */
 }
 
 .bingo-field input {
@@ -226,7 +236,6 @@ input[type=checkbox]:checked~div {
   background-color: #50bcf2;
 }
 
-
 .button-container {
   display        : flex;
   flex-direction : row;
@@ -235,7 +244,7 @@ input[type=checkbox]:checked~div {
 }
 
 .button-container h1 {
-  font-size: 8em;
+  font-size: 4em;
 }
 
 .btn {
