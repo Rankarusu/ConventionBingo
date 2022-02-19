@@ -68,7 +68,6 @@ body {
 
 
 .header {
-  position        : sticky;
   background-color: dimgrey;
   width           : 100%;
   margin          : 0 auto;
@@ -77,7 +76,6 @@ body {
   height          : 60px;
   overflow        : hidden;
   z-index         : 100;
-
 }
 
 #burger {
@@ -131,18 +129,18 @@ body {
   width           : 50vw;
   height          : 100vh;
   background-color: #111;
-  transition      : 0.3s ease;
   z-index         : 100;
   overflow        : hidden;
   padding-top     : 60px;
-
-  top     : 60px;
-  position: fixed;
+  top             : 60px;
+  position        : fixed;
+  transition      : .2s ease;
 
 }
 
 #nav.show {
-  transform: translateX(0px);
+  transform : translateX(0px);
+  transition: .2s ease;
 }
 
 
@@ -168,10 +166,9 @@ body {
 /* content */
 
 main {
-  position: absolute;
-  top     : 60px;
-  margin  : 2.5%;
-  z-index : 1;
+  margin : auto;
+  padding: 60px 2rem;
+  z-index: 1;
 }
 
 .bingo-grid {
@@ -183,15 +180,13 @@ main {
 }
 
 .bingo-field {
-  position       : relative;
-  display        : flex;
-  justify-content: fill;
-  align-items    : fill;
-  border         : 1px solid;
-  font-size      : 1.5em;
-  text-align     : center;
-  aspect-ratio   : 1;
-  overflow       : hidden;
+  position    : relative;
+  display     : flex;
+  border      : 1px solid;
+  font-size   : 1.5em;
+  text-align  : center;
+  aspect-ratio: 1;
+  overflow    : hidden;
 }
 
 .bingo-field:hover {
@@ -250,6 +245,7 @@ input[type=checkbox]:checked~div {
   background-color: slategrey;
   padding         : 1rem;
   border-radius   : 0.5rem;
+  cursor          : pointer;
 }
 
 .text-btn {
@@ -260,8 +256,14 @@ input[type=checkbox]:checked~div {
 
 #search {
   font-size: 2em;
-  width    : 95vw;
+  flex     : 1;
+  margin   : 1rem 0;
+}
 
+.search-wrapper {
+  display       : flex;
+  flex-direction: row;
+  gap           : .5rem;
 }
 
 .field-cards {
@@ -278,8 +280,10 @@ input[type=checkbox]:checked~div {
   display        : flex;
   flex-direction : row;
   justify-content: flex-end;
-  padding        : 1rem;
+  padding        : 1rem 0;
   border-bottom  : 1px solid #ccc;
+  gap            : .5rem;
+  align-items    : center;
 }
 
 .card-text {
