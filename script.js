@@ -19,6 +19,7 @@ function toggleSidebar() {
 
 const modal = document.querySelector("#edit-modal");
 const dimmer2 = document.querySelector("#screen-dim2");
+const modalHeader = modal.querySelector("[data-modal-header]");
 const modalText = modal.querySelector("[data-text-input]");
 const savebtn = modal.querySelector("[data-save]");
 
@@ -27,8 +28,12 @@ function toggleModal() {
   modal.classList.toggle("show");
 }
 
-function editCard(element, text) {
+function save(element, text) {
+  element.querySelector("[data-text]").textContent = text;
+}
 
+function editCard(element, text) {
+  modalHeader.innerHTML = "Edit";
   modalText.value = text;
   toggleModal(); //show
 
@@ -38,8 +43,16 @@ function editCard(element, text) {
   };
 }
 
-function save(element, text) {
-  element.querySelector("[data-text]").textContent = text;
+function addNewCard() {
+  modalHeader.innerHTML = "Add new card";
+  modalText.value = modalText.value;
+  toggleModal(); //show
+
+  savebtn.onclick = () => {
+    createCard(modalText.value);
+    toggleModal(); //hide
+  };
+  //we probably want to call the initial creation thing again to sort the cards.
 }
 
 
@@ -47,7 +60,6 @@ function save(element, text) {
 /******************************** SEARCHBAR ********************************/
 
 const fieldTemplate = document.querySelector("[field-template]");
-const cardsContainer = document.querySelector("[data-cards-container]");
 const searchInput = document.querySelector("[data-search]");
 
 let fields = []
@@ -65,31 +77,38 @@ searchInput.addEventListener("input", (e) => {
 
 
 /******************************** CARD CREATION ********************************/
+
+const cardsContainer = document.querySelector("[data-cards-container]");
+
+
+//reading json data and creating fields
+//we should chekc how to put this in localstorage and then read it from there.
 fetch("./data/fields.json")
   .then(res => res.json())
   .then(data => {
     fields = data["fields"].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).map(field => {
-
-      const card = fieldTemplate.content.cloneNode(true).children[0];
-      let cardText = card.querySelector("[data-text]");
-      const delbtn = card.querySelector("[data-delete]");
-      const editbtn = card.querySelector("[data-edit]");
-
-      cardText.textContent = field
-
-      delbtn.addEventListener("click", () => {
-        card.remove();
-      });
-
-      editbtn.addEventListener("click", () => {
-        editCard(card, cardText.textContent);
-      });
-
-      cardsContainer.append(card)
-      return {
-        text: field, element: card
-      }
+      createCard(field);
     });
   });
 
+function createCard(field) {
+  const card = fieldTemplate.content.cloneNode(true).children[0];
+  let cardText = card.querySelector("[data-text]");
+  const delbtn = card.querySelector("[data-delete]");
+  const editbtn = card.querySelector("[data-edit]");
 
+  cardText.textContent = field
+
+  delbtn.addEventListener("click", () => {
+    card.remove();
+  });
+
+  editbtn.addEventListener("click", () => {
+    editCard(card, cardText.textContent);
+  });
+
+  cardsContainer.append(card)
+  return {
+    text: field, element: card
+  }
+}
