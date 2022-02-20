@@ -285,15 +285,18 @@ input[type=checkbox]:checked~div {
 /******************************** EDIT ********************************/
 
 #search {
-  font-size: 2em;
-  flex     : 1;
-  margin   : 1rem 0;
+  font-size       : 2em;
+  flex            : 1;
+  border-radius   : .5rem;
+  border-style    : none;
+  background-color: #ccc;
 }
 
 .search-wrapper {
   display       : flex;
   flex-direction: row;
   gap           : .5rem;
+  margin        : 1rem 0;
 }
 
 .field-cards {

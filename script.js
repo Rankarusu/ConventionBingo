@@ -1,17 +1,50 @@
+/******************************** NAV ********************************/
+
+const nav = document.getElementById("nav");
+const dimmer1 = document.getElementById("screen-dim1");
+const burger = document.getElementById("burger");
+
 function toggleSidebar() {
   setTimeout(() => {
-    document.getElementById("nav").classList.toggle("show");
-    document.getElementById("screen-dim1").classList.toggle("show");
-    document.getElementById("burger").classList.toggle("change");
+    nav.classList.toggle("show");
+    dimmer1.classList.toggle("show");
+    burger.classList.toggle("change");
   }, 150);
   //adjustable delay
 }
 
+
+
+/******************************** MODAL ********************************/
+
+const modal = document.querySelector("#edit-modal");
+const dimmer2 = document.querySelector("#screen-dim2");
+const modalText = modal.querySelector("[data-text-input]");
+const savebtn = modal.querySelector("[data-save]");
+
 function toggleModal() {
-  document.getElementById("screen-dim2").classList.toggle("show");
-  document.getElementById("edit-modal").classList.toggle("show");
-  //TODO: make only one dimmer and add logic so they dont overlap
+  dimmer2.classList.toggle("show");
+  modal.classList.toggle("show");
 }
+
+function editCard(element, text) {
+
+  modalText.value = text;
+  toggleModal(); //show
+
+  savebtn.onclick = () => {
+    save(element, modalText.value);
+    toggleModal(); //hide
+  };
+}
+
+function save(element, text) {
+  element.querySelector("[data-text]").textContent = text;
+}
+
+
+
+/******************************** SEARCHBAR ********************************/
 
 const fieldTemplate = document.querySelector("[field-template]");
 const cardsContainer = document.querySelector("[data-cards-container]");
@@ -29,6 +62,9 @@ searchInput.addEventListener("input", (e) => {
   })
 })
 
+
+
+/******************************** CARD CREATION ********************************/
 fetch("./data/fields.json")
   .then(res => res.json())
   .then(data => {
@@ -38,36 +74,16 @@ fetch("./data/fields.json")
       let cardText = card.querySelector("[data-text]");
       const delbtn = card.querySelector("[data-delete]");
       const editbtn = card.querySelector("[data-edit]");
-      const modal = document.querySelector("#edit-modal")
-      const cancelbtn = modal.querySelector("[data-cancel]");
-      const savebtn = modal.querySelector("[data-save]");
 
       cardText.textContent = field
 
       delbtn.addEventListener("click", () => {
         card.remove();
       });
-<<<<<<< HEAD
-      // editbtn.addEventListener("click", () => {
 
-      // });
-=======
       editbtn.addEventListener("click", () => {
-        modal.querySelector("[data-text-input]").value = cardText.textContent;
-        toggleModal();
-
-        savebtn.addEventListener("click", () => {
-          let input = modal.querySelector("[data-text-input]").value;
-          cardText.textContent = input;
-          document.getElementById("screen-dim2").classList.remove("show");
-          document.getElementById("edit-modal").classList.remove("show");
-        });
-        cancelbtn.addEventListener("click", () => {
-          document.getElementById("screen-dim2").classList.remove("show");
-          document.getElementById("edit-modal").classList.remove("show");
-        });
+        editCard(card, cardText.textContent);
       });
->>>>>>> editModal
 
       cardsContainer.append(card)
       return {

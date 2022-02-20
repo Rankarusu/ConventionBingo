@@ -33,6 +33,9 @@
 
     <div class="search-wrapper">
       <input type="text" id="search" placeholder="Search for fields" data-search>
+      <a class="btn" data-add onclick="addNewCard()">
+        <span class="material-icons md-24">add</span>
+      </a>
     </div>
     <div class="field-cards" data-cards-container>
 
@@ -55,7 +58,7 @@
     </div>
     <div class="modal" id="edit-modal">
       <div class="modal-header">
-        <span>Edit</span>
+        <span data-modal-header>Edit</span>
       </div>
       <div class="modal-content">
         <textarea maxlength="100" placeholder="add a field..." data-text-input></textarea>
@@ -65,7 +68,7 @@
           <span class="material-icons md-24">save</span>
           <span>Save</span>
         </a>
-        <a class="btn text-btn" data-cancel>
+        <a class="btn text-btn" data-cancel onclick="toggleModal()">
           <span class="material-icons md-24">cancel</span>
           <span>Cancel</span>
         </a>
