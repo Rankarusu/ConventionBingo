@@ -1,5 +1,6 @@
 function init() {
   const dimmer2 = document.getElementById('screen-dim2');
+
   /** ****************************** SEARCHBAR ******************************* */
 
   const fieldTemplate = document.querySelector('[field-template]');
@@ -9,7 +10,6 @@ function init() {
 
   searchInput.addEventListener('input', (e) => {
     const value = e.target.value.toLowerCase();
-    // console.log(fields);
 
     fields.forEach((field) => {
       const isVisible = field.text.toLowerCase().includes(value);
@@ -28,59 +28,74 @@ function init() {
   const modalText = modal.querySelector('[data-text-input]');
   const savebtn = modal.querySelector('[data-save]');
 
-  function toggleModal() {
+  function toggleModal(head = '', text = '') {
+    modalHeader.innerText = head;
+    modalText.value = text;
     dimmer2.classList.toggle('show');
     modal.classList.toggle('show');
   }
+  class Field {
+    constructor(id, text, element) {
+      this.id = id;
+      this.text = text;
+      this.element = element;
+      this.cardText = this.element.querySelector('[data-text]');
+      this.savebtn = document.querySelector('[data-save]');
+      this.editbtn = this.element.querySelector('[data-edit]');
+      this.delbtn = this.element.querySelector('[data-delete]');
 
-  function save(element, text) {
-    const card = element;
-    card.querySelector('[data-text]').textContent = text;
-  }
+      localStorage.setItem(this.id, this.text);
+      this.editbtn.onclick = () => { this.edit(); };
+      this.delbtn.onclick = () => { this.delete(); };
+    }
 
-  function editCard(element, text) {
-    modalHeader.innerText = 'Edit';
-    modalText.value = text;
-    toggleModal(); // show
+    edit() {
+      toggleModal('Edit', this.text); // show
+      this.savebtn.onclick = () => {
+        this.text = modalText.value;
+        this.cardText = modalText.value;
+        localStorage.setItem(this.id, this.text);
+        toggleModal(); // hide
+      };
+    }
 
-    savebtn.onclick = () => {
-      save(element, modalText.value);
-      toggleModal(); // hide
-    };
+    delete() {
+      this.element.remove();
+      localStorage.removeItem(this.id);
+    }
   }
 
   function createCard(field) {
     const card = fieldTemplate.content.cloneNode(true).children[0];
     const cardText = card.querySelector('[data-text]');
-    const delbtn = card.querySelector('[data-delete]');
-    const editbtn = card.querySelector('[data-edit]');
+    let num = localStorage.getItem('next');
+    if (!localStorage.next) {
+      num = 0;
+    }
+    try {
+      num = parseInt(num, 10);
+    } catch (error) {
+      num = 0;
+    }
 
-    cardText.textContent = field;
+    const cardId = `card${num}`;
+    cardText.innerText = field;
+    card.dataset.id = cardId;
 
-    delbtn.addEventListener('click', () => {
-      card.remove();
-    });
-
-    editbtn.addEventListener('click', () => {
-      editCard(card, cardText.textContent);
-    });
-
+    const fieldObj = new Field(cardId, field, card);
     cardsContainer.append(card);
-    return {
-      text: field, element: card,
-    };
+
+    localStorage.setItem('next', num + 1);
+    return fieldObj;
   }
 
   function addNewCard() {
-    modalHeader.innerText = 'Add new card';
-    modalText.value = '';
-    toggleModal(); // show
+    toggleModal('Add new card', ''); // show
 
     savebtn.onclick = () => {
       createCard(modalText.value);
       toggleModal(); // hide
     };
-    // we probably want to call the initial creation thing again to sort the cards.
   }
 
   addbtn.onclick = addNewCard;
@@ -89,11 +104,16 @@ function init() {
 
   /** ****************************** DATA ******************************* */
   // reading json data and creating fields
-  // we should chekc how to put this in localstorage and then read it from there.
+  // we should check how to put this in localstorage and then read it from there.
+
+  localStorage.clear();
+
   fetch('./data/fields.json')
     .then((res) => res.json())
     .then((data) => {
       fields = data.fields.sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).map((field) => createCard(field));
     });
+  // check localstorage and load this instead maybe
+  // Object.keys(localStorage).map((key) => createCard(localStorage[key])); // TODO: sort this.
 }
 init();
