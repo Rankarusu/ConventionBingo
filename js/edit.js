@@ -73,6 +73,7 @@ function init() {
 
   function addNewCard() {
     modalHeader.innerText = 'Add new card';
+    modalText.value = '';
     toggleModal(); // show
 
     savebtn.onclick = () => {
@@ -84,6 +85,7 @@ function init() {
 
   addbtn.onclick = addNewCard;
   cancelbtn.onclick = toggleModal;
+  dimmer2.onclick = toggleModal;
 
   /** ****************************** DATA ******************************* */
   // reading json data and creating fields
