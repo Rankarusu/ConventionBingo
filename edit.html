@@ -10,10 +10,10 @@
 </head>
 
 <body>
-  <div id="screen-dim1" class="screen-dim" onclick="toggleSidebar()"></div>
-  <div id="screen-dim2" class="screen-dim" onclick="toggleModal()"></div>
+  <div id="screen-dim1" class="screen-dim"></div>
+  <div id="screen-dim2" class="screen-dim"></div>
   <div class="header">
-    <div id="burger" onclick="toggleSidebar()">
+    <div id="burger">
       <div id="bar1" class="bar"></div>
       <div id="bar2" class="bar"></div>
       <div id="bar3" class="bar"></div>
@@ -33,7 +33,7 @@
 
     <div class="search-wrapper">
       <input type="text" id="search" placeholder="Search for fields" data-search>
-      <a class="btn" data-add onclick="addNewCard()">
+      <a class="btn" data-add>
         <span class="material-icons md-24">add</span>
       </a>
     </div>
@@ -68,7 +68,7 @@
           <span class="material-icons md-24">save</span>
           <span>Save</span>
         </a>
-        <a class="btn text-btn" data-cancel onclick="toggleModal()">
+        <a class="btn text-btn" data-cancel>
           <span class="material-icons md-24">cancel</span>
           <span>Cancel</span>
         </a>
