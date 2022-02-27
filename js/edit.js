@@ -134,4 +134,5 @@ function init() {
     console.log('read from json');
   }
 }
+// TODO: add a reset button somewhere
 init();

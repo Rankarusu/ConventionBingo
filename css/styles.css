@@ -209,7 +209,6 @@ main {
   position    : relative;
   display     : flex;
   border      : 1px solid;
-  font-size   : 1.5em;
   text-align  : center;
   aspect-ratio: 1;
   overflow    : hidden;
@@ -222,23 +221,22 @@ main {
 .bingo-field div {
   width          : 100%;
   height         : 100%;
-  display        : flex;
   justify-content: center;
   align-items    : center;
-  vertical-align : middle;
   transition     : .1s ease;
-
 }
 
 .bingo-field div span {
-  width      : 95%;
-  height     : 95%;
-  display    : inline-flex;
-  align-items: center;
-  font-size  : 1rem;
-  word-wrap  : break-word;
-  hyphens    : auto;
-  /* TODO    : https://github.com/STRML/textFit */
+  margin         : 2.5%;
+  width          : 95%;
+  height         : 95%;
+  display        : inline-flex;
+  justify-content: center;
+  align-items    : center;
+  font-size      : 1rem;
+  word-wrap      : break-word;
+  hyphens        : auto;
+  /* TODO        : https://github.com/STRML/textFit */
 }
 
 .bingo-field input {
@@ -247,7 +245,7 @@ main {
   height  : 100%;
   opacity : 0;
   cursor  : pointer;
-  padding : 1rem;
+  margin  : 0;
 }
 
 input[type=checkbox]:checked~div {
