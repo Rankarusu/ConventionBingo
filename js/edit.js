@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 function init() {
   const dimmer2 = document.getElementById('screen-dim2');
 
@@ -53,7 +54,7 @@ function init() {
       toggleModal('Edit', this.text); // show
       this.savebtn.onclick = () => {
         this.text = modalText.value;
-        this.cardText = modalText.value;
+        this.cardText.innerText = modalText.value;
         localStorage.setItem(this.id, this.text);
         toggleModal(); // hide
       };
@@ -65,27 +66,35 @@ function init() {
     }
   }
 
-  function createCard(field) {
+  /**
+   * if id is provided, this funciton will reassign it to the corresponding card.
+   * if omitted, a new i will be generated.
+   */
+  function createCard(field, id = null) {
     const card = fieldTemplate.content.cloneNode(true).children[0];
     const cardText = card.querySelector('[data-text]');
+    let cardId;
     let num = localStorage.getItem('next');
     if (!localStorage.next) {
       num = 0;
-    }
-    try {
+    } else {
       num = parseInt(num, 10);
-    } catch (error) {
-      num = 0;
     }
 
-    const cardId = `card${num}`;
+    if (id != null) {
+      cardId = id;
+    } else {
+      cardId = `card${num}`;
+    }
+
     cardText.innerText = field;
     card.dataset.id = cardId;
 
     const fieldObj = new Field(cardId, field, card);
     cardsContainer.append(card);
-
-    localStorage.setItem('next', num + 1);
+    if (id === null) {
+      localStorage.setItem('next', num + 1);
+    }
     return fieldObj;
   }
 
@@ -103,17 +112,26 @@ function init() {
   dimmer2.onclick = toggleModal;
 
   /** ****************************** DATA ******************************* */
-  // reading json data and creating fields
-  // we should check how to put this in localstorage and then read it from there.
+  // reading data from localStorage or JSON
 
-  localStorage.clear();
+  // localStorage.clear();
 
-  fetch('./data/fields.json')
-    .then((res) => res.json())
-    .then((data) => {
-      fields = data.fields.sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).map((field) => createCard(field));
-    });
-  // check localstorage and load this instead maybe
-  // Object.keys(localStorage).map((key) => createCard(localStorage[key])); // TODO: sort this.
+  // read data from localstorage if available
+  const localStorageFields = Object.keys(localStorage).filter((card) => card.includes('card'));
+
+  if (localStorageFields.length > 0) {
+    fields = localStorageFields.map((key) => createCard(localStorage[key], key)); // TODO: sort this
+    console.log('read from storage');
+  } else {
+    // make sure remaining data is cleaned and read from json.
+    localStorage.clear();
+
+    fetch('./data/fields.json')
+      .then((res) => res.json())
+      .then((data) => {
+        fields = data.fields.sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).map((field) => createCard(field));
+      });
+    console.log('read from json');
+  }
 }
 init();
