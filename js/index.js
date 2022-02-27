@@ -1,6 +1,9 @@
 function init() {
   const template = document.querySelector('[bingo-field-template]');
   const grid = document.querySelector('[data-bingo-grid]');
+  const rerollbtn = document.querySelector('[data-reroll]');
+  const savebtn = document.querySelector('[data-save]');
+  const editbtn = document.querySelector('[data-edit]');
 
   class BingoField {
     constructor(id, text, element) {
@@ -28,7 +31,17 @@ function init() {
     return fieldObj;
   }
 
+  function saveGrid() {
+    const currentGrid = document.querySelectorAll('[data-text]');
+    const array = Array.from(currentGrid).map((field) => field.innerText);
+    localStorage.setItem('currentGrid', JSON.stringify(array));
+  }
+
   function populateGrid() {
+    while (grid.firstChild) {
+      grid.removeChild(grid.firstChild);
+    }
+
     const localStorageKeys = Object.keys(localStorage).filter((card) => card.includes('card'));
     const values = localStorageKeys.map((key) => (localStorage[key]));
     const nums = new Set();
@@ -47,10 +60,9 @@ function init() {
       }
       fields.push(element);
     }
-    const currentGrid = document.querySelectorAll('[data-text]');
-    const array = Array.from(currentGrid).map((field) => field.innerText);
-    localStorage.setItem('currentGrid', JSON.stringify(array));
+    saveGrid();
   }
+
   function loadGrid() {
     const content = JSON.parse(localStorage.getItem('currentGrid'));
     const fields = [];
@@ -61,6 +73,10 @@ function init() {
     }
     fields[12].checkbox.checked = true;
   }
+
+  /** ****************************** Startup ******************************* */
+  rerollbtn.onclick = populateGrid;
+  savebtn.onclick = saveGrid;
 
   if (localStorage.getItem('currentGrid')) {
     loadGrid();
