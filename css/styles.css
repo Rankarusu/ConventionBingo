@@ -248,6 +248,13 @@ main {
   margin  : 0;
 }
 
+.input-disabled{
+  pointer-events: none;
+}
+.input-disabled + div {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
 input[type=checkbox]:checked~div {
   background-color: #50bcf2;
 }
@@ -400,4 +407,11 @@ input[type=checkbox]:checked~div {
   justify-content: flex-end;
   gap            : .5rem;
   padding        : 1rem;
+}
+
+.modal-content .card-text{
+  padding : 0 1rem;
+}
+.modal-content{
+  overflow-y: scroll;
 }

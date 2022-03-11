@@ -43,10 +43,10 @@
 
       <template bingo-field-template>
         <div class="bingo-field" data-bingo-field>
-          <input type="checkbox" data-bingo-checkbox/>
+          <input type="checkbox" data-bingo-checkbox />
           <div>
-            <span data-text>
-              
+            <span data-bingo-field-text>
+
             </span>
           </div>
         </div>
@@ -59,12 +59,31 @@
         <span class="material-icons md-48">save</span>
         <span>Save</span>
       </a>
-      <a class="btn text-btn" data-edit>
+      <a class="btn text-btn" data-mode="">
         <span class="material-icons md-48">edit</span>
-        <span>Edit</span>
+        <span data-edit-btn-text>Edit</span>
       </a>
     </div>
   </main>
+
+  <div class="modal" id="edit-modal">
+    <div class="modal-header">
+      <span data-modal-header></span>
+    </div>
+    <div class="modal-content">
+      <textarea maxlength="100" data-text-input></textarea>
+    </div>
+    <div class="modal-footer">
+      <a class="btn text-btn" data-save>
+        <span class="material-icons md-24">save</span>
+        <span>Save</span>
+      </a>
+      <a class="btn text-btn" data-cancel>
+        <span class="material-icons md-24">cancel</span>
+        <span>Cancel</span>
+      </a>
+    </div>
+  </div>
 
 </body>
 <script src="js/shared.js"></script>
