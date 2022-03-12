@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 (function init() {
   const dimmer2 = document.getElementById('screen-dim2');
   const template = document.querySelector('[bingo-field-template]');
@@ -21,13 +22,14 @@
     modal.classList.toggle('show');
   }
   class BingoField {
-    constructor(id, text, element) {
+    constructor(id, text, element, checked = false) {
       this.id = id;
       this.text = text;
       this.element = element;
       this.element.dataset.bingoField = id;
       this.displayText = this.element.querySelector('[data-bingo-field-text]');
       this.checkbox = this.element.querySelector('[data-bingo-checkbox]');
+      this.checkbox.checked = checked;
       this.checkbox.dataset.bingoField = id;
     }
 
@@ -41,95 +43,39 @@
     }
   }
 
-  function createBingoField(id, text) {
+  function createBingoField(id, text, checked) {
     const field = template.content.cloneNode(true).children[0];
-    const fieldObj = new BingoField(id, text, field);
+    const fieldObj = new BingoField(id, text, field, checked);
     fieldObj.displayText.innerText = text;
     grid.append(field);
     return fieldObj;
   }
 
-  function saveGrid() {
-    const currentGrid = document.querySelectorAll('[data-bingo-field-text]');
-    console.log(currentGrid.length);
-    const array = Array.from(currentGrid).map((field) => field.innerText);
-    localStorage.setItem('currentGrid', JSON.stringify(array));
-  }
-
-  function populateGrid() {
-    while (grid.firstChild) {
-      grid.removeChild(grid.firstChild);
-    }
-
-    const localStorageKeys = Object.keys(localStorage).filter((card) => card.includes('card'));
-    const values = localStorageKeys.map((key) => (localStorage[key]));
-    const nums = new Set();
-    while (nums.size !== 25) {
-      nums.add(Math.floor(Math.random() * values.length));
-    }
-    const fields = [];
-    for (let i = 0; i < 25; i += 1) {
-      let element = null;
-      if (i === 12) {
-        element = createBingoField(i, 'FREE SPACE');
-        element.checkbox.checked = true;
-      } else {
-        const idx = Array.from(nums)[i];
-        element = createBingoField(i, values[idx]);
-      }
-      fields.push(element);
-    }
-    fields.forEach((field) => field.checkbox.addEventListener('change', () => {
-      // only display confetti on check and not on uncheck.
-      if (field.checkbox.checked) {
-        checkWin(fields);
-      }
-    }));
-
-    saveGrid();
-    return fields;
-  }
-
-  function loadGrid() {
-    const content = JSON.parse(localStorage.getItem('currentGrid'));
-    const fields = [];
-    for (let i = 0; i < content.length; i += 1) {
-      const element = content[i];
-      const field = createBingoField(i, element);
-      fields.push(field);
-    }
-    fields[12].checkbox.checked = true;
-
-    fields.forEach((field) => field.checkbox.addEventListener('change', () => {
-      // only display confetti on check and not on uncheck.
-      if (field.checkbox.checked) {
-        checkWin(fields);
-      }
-    }));
-    return fields;
-  }
-
-  function toggleEditMode(fields) {
-    if (editModeBtn.dataset.mode === '') {
-      editModeBtn.dataset.mode = 'edit';
-
-      editModeBtnText.innerText = 'Stop editing';
-
-      // I have no clue how to do this another way
-      // eslint-disable-next-line no-return-assign
-      fields.forEach((field) => field.element.addEventListener('click', field.editmode = function editmode() { field.edit(); }, false));
-    } else {
-      editModeBtn.dataset.mode = '';
-      editModeBtnText.innerText = 'Edit';
-      fields.forEach((field) => field.element.removeEventListener('click', field.editmode));
-    }
-
-    fields.forEach((field) => {
-      const el = field;
-      el.checkbox.classList.toggle('input-disabled');
+  function saveGrid(fields, name = 'currentSheet') {
+    console.log('saving...');
+    const sheetObj = fields.map((field) => {
+      const fieldObj = {
+        id: field.id,
+        text: field.text,
+        checked: field.checkbox.checked,
+      };
+      return fieldObj;
     });
+
+    localStorage.setItem(name, JSON.stringify(sheetObj));
   }
 
+  function saveGridWithId(fields) {
+    const localStorageSheets = Object.keys(localStorage).filter((sheet) => sheet.includes('sheet'));
+    // get highest ID
+    let highestIndex = 0;
+    if (localStorageSheets.length > 0) {
+      // extract highest number from sheets in localstorage
+      const indices = localStorageSheets.map((sheet) => parseInt(sheet.replace(/^\D+/g, ''), 10));
+      highestIndex = Math.max(...indices);
+    }
+    saveGrid(fields, `sheet${highestIndex + 1}`);
+  }
   const winnningRows = [
     // horizontal rows
     [0, 1, 2, 3, 4],
@@ -172,13 +118,83 @@
     }
   }
 
-  // savebtn.onclick = saveGrid;
+  function populateGrid() {
+    while (grid.firstChild) {
+      grid.removeChild(grid.firstChild);
+    }
+
+    const localStorageKeys = Object.keys(localStorage).filter((card) => card.includes('card'));
+    const values = localStorageKeys.map((key) => (localStorage[key]));
+    const nums = new Set();
+    while (nums.size !== 25) {
+      nums.add(Math.floor(Math.random() * values.length));
+    }
+    const fields = [];
+    for (let i = 0; i < 25; i += 1) {
+      let element = null;
+      if (i === 12) {
+        element = createBingoField(i, 'FREE SPACE');
+        element.checkbox.checked = true;
+      } else {
+        const idx = Array.from(nums)[i];
+        element = createBingoField(i, values[idx]);
+      }
+      fields.push(element);
+    }
+    fields.forEach((field) => field.checkbox.addEventListener('change', () => {
+      // only display confetti on check and not on uncheck.
+      if (field.checkbox.checked) {
+        checkWin(fields);
+      }
+    }));
+
+    saveGrid(fields);
+    return fields;
+  }
+
+  function loadGrid() {
+    const content = JSON.parse(localStorage.getItem('currentSheet'));
+    const fields = [];
+
+    content.forEach((field) => {
+      const element = createBingoField(field.id, field.text, field.checked);
+      element.checkbox.addEventListener('change', () => {
+        if (element.checkbox.checked) {
+          checkWin(fields);
+        }
+      });
+      fields.push(element);
+    });
+    return fields;
+  }
+
+  function toggleEditMode(fields) {
+    if (editModeBtn.dataset.mode === '') {
+      editModeBtn.dataset.mode = 'edit';
+
+      editModeBtnText.innerText = 'Stop editing';
+
+      // I have no clue how to do this another way
+      // eslint-disable-next-line no-return-assign
+      fields.forEach((field) => field.element.addEventListener('click', field.editmode = function editmode() { field.edit(); }, false));
+    } else {
+      editModeBtn.dataset.mode = '';
+      editModeBtnText.innerText = 'Edit';
+      fields.forEach((field) => field.element.removeEventListener('click', field.editmode));
+    }
+
+    fields.forEach((field) => {
+      const el = field;
+      el.checkbox.classList.toggle('input-disabled');
+    });
+  }
+
   cancelbtn.onclick = toggleModal;
   dimmer2.onclick = toggleModal;
 
   let fields = [];
   // TODO: validate localstorage
-  if (localStorage.getItem('currentGrid')) {
+  if (localStorage.getItem('currentSheet')) {
     fields = loadGrid();
     console.log(fields);
   } else {
@@ -187,7 +203,10 @@
     console.log(fields);
   }
   const saveGridBtn = document.querySelector('[data-save-grid]');
-  saveGridBtn.addEventListener('click', () => { checkWin(fields); });
+
+  saveGridBtn.addEventListener('click', () => {
+    saveGridWithId(fields);
+  });
 
   rerollbtn.addEventListener('click', () => {
     fields = populateGrid();
