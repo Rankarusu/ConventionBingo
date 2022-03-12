@@ -211,8 +211,12 @@
   rerollbtn.addEventListener('click', () => {
     fields = populateGrid();
   });
-  // this is the modal btn. change this.
+
   editModeBtn.addEventListener('click', () => {
     toggleEditMode(fields);
+  });
+
+  window.addEventListener('beforeunload', () => {
+    saveGrid(fields);
   });
 }());

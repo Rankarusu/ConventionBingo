@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saved Sheets</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js" defer></script>
+  <script src="js/shared.js" defer></script>
+  <script src="js/savedSheets.js" defer></script>
+</head>
+
+<body>
+  <canvas id="my-canvas"></canvas>
+  <div id="screen-dim1" class="screen-dim"></div>
+  <div id="screen-dim2" class="screen-dim"></div>
+  <div class="header">
+    <div id="burger">
+      <div id="bar1" class="bar"></div>
+      <div id="bar2" class="bar"></div>
+      <div id="bar3" class="bar"></div>
+    </div>
+  </div>
+  <div id="nav-container">
+    <div id="nav">
+      <ul>
+        <li><a href="index.html">Play</a></li>
+        <li><a href="edit.html">Edit</a></li>
+        <li><a href="savedSheets.html">Saved Sheets</a></li>
+      </ul>
+    </div>
+  </div>
+  <main>
+    <template bingo-field-template>
+      <div class="bingo-field" data-bingo-field style="pointer-events: none">
+        <input type="checkbox" data-bingo-checkbox style="pointer-events: none"/>
+        <div>
+          <span data-bingo-field-text>
+
+          </span>
+        </div>
+      </div>
+    </template>
+    <template bingo-grid-template>
+      <div class="bingo-grid" data-bingo-grid>
+      </div>
+    </template>
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div id="swiper-wrapper" class="swiper-wrapper">
+        <!-- Slides -->
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+    </div>
+    <div class="button-container">
+      <a class="btn text-btn" data-load-grid>
+        <span class="material-icons md-48">upload</span>
+        <span>Load</span>
+      </a>
+      <a class="btn text-btn" data-delete-grid>
+        <span class="material-icons md-48">delete</span>
+        <span data-edit-btn-text>Delete</span>
+      </a>
+      <a class="btn text-btn" data-import-grid>
+        <span class="material-icons md-48">download</span>
+        <span data-edit-btn-text>Import</span>
+      </a>
+      <a class="btn text-btn" data-export-grid>
+        <span class="material-icons md-48">share</span>
+        <span data-edit-btn-text>Share</span>
+      </a>
+    </div>
+  </main>
+</body>
+
+</html>

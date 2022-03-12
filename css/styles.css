@@ -415,3 +415,11 @@ input[type=checkbox]:checked~div {
 .modal-content{
   overflow-y: scroll;
 }
+
+
+
+/****************** SWIPER ***************/
+.swiper {
+  max-width: 1000px;
+  
+}
