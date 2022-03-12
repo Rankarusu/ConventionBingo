@@ -135,4 +135,5 @@ function init() {
   }
 }
 // TODO: add a reset button somewhere
+// TODO: put this in shared
 init();

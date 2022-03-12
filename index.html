@@ -7,9 +7,12 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Convention Bingo</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" defer></script>
+
 </head>
 
 <body>
+  <canvas id="my-canvas"></canvas>
   <div id="screen-dim1" class="screen-dim"></div>
   <div id="screen-dim2" class="screen-dim"></div>
   <div class="header">
@@ -55,7 +58,7 @@
     </div>
 
     <div class="button-container">
-      <a class="btn text-btn" data-save>
+      <a class="btn text-btn" data-save-grid>
         <span class="material-icons md-48">save</span>
         <span>Save</span>
       </a>
