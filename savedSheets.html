@@ -15,7 +15,6 @@
 </head>
 
 <body>
-  <canvas id="my-canvas"></canvas>
   <div id="screen-dim1" class="screen-dim"></div>
   <div id="screen-dim2" class="screen-dim"></div>
   <div class="header">
@@ -37,7 +36,7 @@
   <main>
     <template bingo-field-template>
       <div class="bingo-field" data-bingo-field style="pointer-events: none">
-        <input type="checkbox" data-bingo-checkbox style="pointer-events: none"/>
+        <input type="checkbox" data-bingo-checkbox style="pointer-events: none" />
         <div>
           <span data-bingo-field-text>
 
@@ -72,10 +71,11 @@
         <span class="material-icons md-48">delete</span>
         <span data-edit-btn-text>Delete</span>
       </a>
-      <a class="btn text-btn" data-import-grid>
+      <label class="btn text-btn" data-import-grid>
+        <input type="file" accept=".json" />
         <span class="material-icons md-48">download</span>
         <span data-edit-btn-text>Import</span>
-      </a>
+      </label>
       <a class="btn text-btn" data-export-grid>
         <span class="material-icons md-48">share</span>
         <span data-edit-btn-text>Share</span>

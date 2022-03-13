@@ -60,6 +60,10 @@ body {
   padding         : 0;
 }
 
+input[type="file"] {
+  display: none;
+}
+
 
 .screen-dim {
   opacity   : 0.0;
@@ -248,10 +252,11 @@ main {
   margin  : 0;
 }
 
-.input-disabled{
+.input-disabled {
   pointer-events: none;
 }
-.input-disabled + div {
+
+.input-disabled+div {
   background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
@@ -356,6 +361,7 @@ input[type=checkbox]:checked~div {
   visibility      : hidden;
 }
 
+
 .modal.show {
   display       : flex;
   opacity       : 1;
@@ -409,10 +415,11 @@ input[type=checkbox]:checked~div {
   padding        : 1rem;
 }
 
-.modal-content .card-text{
-  padding : 0 1rem;
+.modal-content .card-text {
+  padding: 0 1rem;
 }
-.modal-content{
+
+.modal-content {
   overflow-y: scroll;
 }
 
@@ -421,5 +428,4 @@ input[type=checkbox]:checked~div {
 /****************** SWIPER ***************/
 .swiper {
   max-width: 1000px;
-  
 }
