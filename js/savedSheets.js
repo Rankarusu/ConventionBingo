@@ -92,7 +92,6 @@
     const sheetId = getActiveSlideId();
     const content = JSON.parse(localStorage.getItem(sheetId));
     const jsonString = JSON.stringify(content);
-    console.log(content);
     const blobConfig = new Blob(
       [jsonString],
       { type: 'application/json' },
@@ -115,20 +114,25 @@
   }
 
   function onReaderLoad(event) {
+    const regexp = /^\[(({"id":\d+,"text":"(.*?)","checked":(true|false)},){24}({"id":\d+,"text":"(.*?)","checked":(true|false)}))\]$/;
     // TODO: put the code below in a function
-    // TODO: validate json
-    const result = JSON.parse(event.target.result);
-    let id = 'sheet0';
+    // validate json via regex
+    if (regexp.test(event.target.result)) {
+      const result = JSON.parse(event.target.result);
+      let id = 'sheet0';
 
-    const localStorageSheets = Object.keys(localStorage).filter((sheet) => sheet.includes('sheet'));
-    // get highest ID
-    if (localStorageSheets.length > 0) {
-      // extract highest number from sheets in localstorage
-      const indices = localStorageSheets.map((sheet) => parseInt(sheet.replace(/^\D+/g, ''), 10));
-      id = `sheet${Math.max(...indices) + 1}`;
+      const localStorageSheets = Object.keys(localStorage).filter((sheet) => sheet.includes('sheet'));
+      // get highest ID
+      if (localStorageSheets.length > 0) {
+        // extract highest number from sheets in localstorage
+        const indices = localStorageSheets.map((sheet) => parseInt(sheet.replace(/^\D+/g, ''), 10));
+        id = `sheet${Math.max(...indices) + 1}`;
+      }
+      createSheetNode(result, id);
+      localStorage.setItem(id, JSON.stringify(result));
+    } else {
+      alert('Invalid JSON');
     }
-    createSheetNode(result, id);
-    localStorage.setItem(id, JSON.stringify(result));
   }
 
   function onChange(event) {
