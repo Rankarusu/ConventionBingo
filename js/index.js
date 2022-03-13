@@ -21,6 +21,35 @@
     dimmer2.classList.toggle('show');
     modal.classList.toggle('show');
   }
+  function showMessage(text) {
+    const body = document.querySelector('body');
+    const template = document.createElement('template');
+    const html = `<div class="message">
+    <div class="message-textbox">
+    <span class="message__text">
+    ${text}
+    </span>
+    <span class="material-icons md-24" style="cursor: pointer" data-cancel>cancel</span>
+    </div>
+    <div class="meter">
+    <span><span class="progress"></span></span>
+    </div>
+    </div>`;
+    template.innerHTML = html.trim();
+
+    const newNode = template.content.cloneNode(true).children[0];
+    const cancelBtn = newNode.querySelector('[data-cancel]');
+    cancelBtn.addEventListener('click', () => {
+      newNode.remove();
+    });
+
+    console.log(newNode);
+    body.appendChild(newNode);
+
+    setTimeout(() => {
+      newNode.remove();
+    }, 3000);
+  }
   class BingoField {
     constructor(id, text, element, checked = false) {
       this.id = id;
@@ -111,6 +140,7 @@
             spread: 70,
             origin: { y: 0.6 },
           });
+          showMessage('winner winner chicken dinner!');
           // stop evaluating once we got a win
           break;
         }
@@ -198,7 +228,7 @@
     fields = loadGrid();
     console.log(fields);
   } else {
-    // TODO: check if there are even any cards.
+    // TODO: check if there are even any cards, or rather enough.
     fields = populateGrid();
     console.log(fields);
   }
@@ -206,6 +236,7 @@
 
   saveGridBtn.addEventListener('click', () => {
     saveGridWithId(fields);
+    showMessage('sheet saved!');
   });
 
   rerollbtn.addEventListener('click', () => {

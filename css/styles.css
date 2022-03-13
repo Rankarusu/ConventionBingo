@@ -429,3 +429,73 @@ input[type=checkbox]:checked~div {
 .swiper {
   max-width: 1000px;
 }
+
+.message {
+  color           : white;
+  padding         : 1rem;
+  width           : 15rem;
+  position        : fixed;
+  display         : flex;
+  flex-direction  : column;
+  border-radius   : .5rem .5rem 0 0;
+  /* border-radius: .5rem; */
+  bottom          : .5rem;
+  left            : .5rem;
+  background-color: #555;
+
+  z-index: 1;
+  gap    : .5rem;
+
+  animation: fadeInOut 3s;
+}
+
+.message-textbox {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : center;
+}
+
+.message__text {
+  word-wrap    : break-word;
+  overflow-wrap: break-word;
+}
+
+.meter {
+  margin-bottom: calc(-1rem - 5px);
+  margin-left  : -1rem;
+  width        : calc(100% + 2rem);
+  border-radius: 0 0 .5rem .5rem;
+  height       : 5px;
+  background   : grey;
+  overflow     : hidden;
+}
+
+.meter span {
+  display: block;
+  height : 100%;
+}
+
+.progress {
+  background-color   : #555;
+  animation          : progressBar 3s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {opacity:0;}
+  10% {opacity:1;}
+  90% {opacity:1;}
+  100% {opacity:0;}
+}
+

@@ -23,8 +23,39 @@
       prevEl: '.swiper-button-prev',
     },
   });
+
   const gridTemplate = document.querySelector('[bingo-grid-template]');
   const fieldTemplate = document.querySelector('[bingo-field-template]');
+
+  function showMessage(text) {
+    const body = document.querySelector('body');
+    const template = document.createElement('template');
+    const html = `<div class="message">
+    <div class="message-textbox">
+    <span class="message__text">
+    ${text}
+    </span>
+    <span class="material-icons md-24" style="cursor: pointer" data-cancel>cancel</span>
+    </div>
+    <div class="meter">
+    <span><span class="progress"></span></span>
+    </div>
+    </div>`;
+    template.innerHTML = html.trim();
+
+    const newNode = template.content.cloneNode(true).children[0];
+    const cancelBtn = newNode.querySelector('[data-cancel]');
+    cancelBtn.addEventListener('click', () => {
+      newNode.remove();
+    });
+
+    console.log(newNode);
+    body.appendChild(newNode);
+
+    setTimeout(() => {
+      newNode.remove();
+    }, 3000);
+  }
 
   function createSheetNode(content, id) {
     const slide = document.createElement('div');
@@ -67,6 +98,7 @@
       if (confirm('This will overwrite your current sheet you are playing on.\n Are you sure?') === true) {
         const sheet = localStorage.getItem(sheetId);
         localStorage.setItem('currentSheet', sheet);
+        showMessage('sheet loaded successfully!');
       }
     } catch (e) {
       alert('no sheet to load!');
@@ -81,6 +113,7 @@
         localStorage.removeItem(sheetId);
         swiper.removeSlide(swiper.activeIndex);
         swiper.update();
+        showMessage('sheet deleted successfully');
       }
     } catch (e) {
       alert('no sheets to delete!');
@@ -89,30 +122,36 @@
 
   // holy shit downloading stuff is hacky...
   function exportSheet() {
-    const sheetId = getActiveSlideId();
-    const content = JSON.parse(localStorage.getItem(sheetId));
-    const jsonString = JSON.stringify(content);
-    const blobConfig = new Blob(
-      [jsonString],
-      { type: 'application/json' },
-    );
+    let sheetId;
+    try {
+      sheetId = getActiveSlideId();
 
-    // Convert Blob to URL
-    const blobUrl = URL.createObjectURL(blobConfig);
+      const content = JSON.parse(localStorage.getItem(sheetId));
+      const jsonString = JSON.stringify(content);
+      const blobConfig = new Blob(
+        [jsonString],
+        { type: 'application/json' },
+      );
 
-    // Create an a element with blobl URL
-    const anchor = document.createElement('a');
-    anchor.href = blobUrl;
-    anchor.target = '_blank';
-    anchor.download = 'bingo-sheet.json';
+      // Convert Blob to URL
+      const blobUrl = URL.createObjectURL(blobConfig);
 
-    // Auto click on a element, trigger the file download
-    anchor.click();
+      // Create an a element with blobl URL
+      const anchor = document.createElement('a');
+      anchor.href = blobUrl;
+      anchor.target = '_blank';
+      anchor.download = 'bingo-sheet.json';
 
-    // Don't forget ;)
-    URL.revokeObjectURL(blobUrl);
+      // Auto click on a element, trigger the file download
+      anchor.click();
+
+      // Don't forget ;)
+      URL.revokeObjectURL(blobUrl);
+      // showMessage('sheet exported successfully!');
+    } catch (e) {
+      alert('no sheet to export!');
+    }
   }
-
   function onReaderLoad(event) {
     const regexp = /^\[(({"id":\d+,"text":"(.*?)","checked":(true|false)},){24}({"id":\d+,"text":"(.*?)","checked":(true|false)}))\]$/;
     // TODO: put the code below in a function
@@ -130,6 +169,7 @@
       }
       createSheetNode(result, id);
       localStorage.setItem(id, JSON.stringify(result));
+      showMessage('sheet loaded successfully!');
     } else {
       alert('Invalid JSON');
     }

@@ -1,4 +1,4 @@
-function init() {
+(function init() {
   /** ****************************** NAV ******************************* */
 
   const nav = document.getElementById('nav');
@@ -16,5 +16,4 @@ function init() {
 
   burger.onclick = toggleSidebar;
   dimmer1.onclick = toggleSidebar;
-}
-init();
+}());
