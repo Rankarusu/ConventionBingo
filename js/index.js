@@ -1,5 +1,9 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-console */
-(function init() {
+import { showMessage, readData } from './utils.js';
+
+(async function init() {
+  console.log('test');
   const dimmer2 = document.getElementById('screen-dim2');
   const template = document.querySelector('[bingo-field-template]');
   const grid = document.querySelector('[data-bingo-grid]');
@@ -13,6 +17,25 @@
 
   const editModeBtn = document.querySelector('[data-mode]');
   const editModeBtnText = editModeBtn.querySelector('[data-edit-btn-text]');
+  const winnningRows = [
+    // horizontal rows
+    [0, 1, 2, 3, 4],
+    [5, 6, 7, 8, 9],
+    [10, 11, 12, 13, 14],
+    [15, 16, 17, 18, 19],
+    [20, 21, 22, 23, 24],
+
+    [0, 5, 10, 15, 20],
+    [1, 6, 11, 16, 21],
+    [2, 7, 12, 17, 22],
+    [3, 8, 13, 18, 23],
+    [4, 9, 14, 19, 24],
+
+    [0, 6, 12, 18, 24],
+    [4, 8, 12, 16, 20],
+  ];
+
+  const lsFields = await readData();
 
   function toggleModal(head = '', text = '') {
     modalHeader.innerText = head;
@@ -20,35 +43,6 @@
     modalText.innerText = text;
     dimmer2.classList.toggle('show');
     modal.classList.toggle('show');
-  }
-  function showMessage(text) {
-    const body = document.querySelector('body');
-    const template = document.createElement('template');
-    const html = `<div class="message">
-    <div class="message-textbox">
-    <span class="message__text">
-    ${text}
-    </span>
-    <span class="material-icons md-24" style="cursor: pointer" data-cancel>cancel</span>
-    </div>
-    <div class="meter">
-    <span><span class="progress"></span></span>
-    </div>
-    </div>`;
-    template.innerHTML = html.trim();
-
-    const newNode = template.content.cloneNode(true).children[0];
-    const cancelBtn = newNode.querySelector('[data-cancel]');
-    cancelBtn.addEventListener('click', () => {
-      newNode.remove();
-    });
-
-    console.log(newNode);
-    body.appendChild(newNode);
-
-    setTimeout(() => {
-      newNode.remove();
-    }, 3000);
   }
   class BingoField {
     constructor(id, text, element, checked = false) {
@@ -105,23 +99,6 @@
     }
     saveGrid(fields, `sheet${highestIndex + 1}`);
   }
-  const winnningRows = [
-    // horizontal rows
-    [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9],
-    [10, 11, 12, 13, 14],
-    [15, 16, 17, 18, 19],
-    [20, 21, 22, 23, 24],
-
-    [0, 5, 10, 15, 20],
-    [1, 6, 11, 16, 21],
-    [2, 7, 12, 17, 22],
-    [3, 8, 13, 18, 23],
-    [4, 9, 14, 19, 24],
-
-    [0, 6, 12, 18, 24],
-    [4, 8, 12, 16, 20],
-  ];
 
   function checkWin(fields) {
     // get all ids of checked bingo fields
@@ -149,16 +126,27 @@
   }
 
   function populateGrid() {
+    console.log(1);
     while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
     }
+    console.log(1);
 
-    const localStorageKeys = Object.keys(localStorage).filter((card) => card.includes('card'));
-    const values = localStorageKeys.map((key) => (localStorage[key]));
-    const nums = new Set();
+    const lsKeys = Object.keys(lsFields);
+    console.log(1);
+    // i need the utility of indices for the random selection so this is kinda mandatory.
+    const lsValues = lsKeys.map((key) => (lsFields[key]));
+    console.log(1);
+    // make a set of 25 random numbers that are no higher than the amount of fields in ls.
+    let nums = new Set();
+    console.log(lsFields.length);
+    console.log(lsFields);
     while (nums.size !== 25) {
-      nums.add(Math.floor(Math.random() * values.length));
+      nums.add(Math.floor(Math.random() * lsKeys.length));
     }
+    console.log(1);
+
+    nums = Array.from(nums);
     const fields = [];
     for (let i = 0; i < 25; i += 1) {
       let element = null;
@@ -166,8 +154,8 @@
         element = createBingoField(i, 'FREE SPACE');
         element.checkbox.checked = true;
       } else {
-        const idx = Array.from(nums)[i];
-        element = createBingoField(i, values[idx]);
+        const idx = nums[i];
+        element = createBingoField(i, lsValues[idx]);
       }
       fields.push(element);
     }
@@ -224,14 +212,18 @@
 
   let fields = [];
   // TODO: validate localstorage
+  console.log(localStorage.getItem('currentSheet'));
   if (localStorage.getItem('currentSheet')) {
+    console.log('a');
     fields = loadGrid();
     console.log(fields);
   } else {
+    console.log('b');
     // TODO: check if there are even any cards, or rather enough.
     fields = populateGrid();
     console.log(fields);
   }
+
   const saveGridBtn = document.querySelector('[data-save-grid]');
 
   saveGridBtn.addEventListener('click', () => {

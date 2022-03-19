@@ -1,5 +1,8 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-alert */
+import { showMessage } from './utils.js';
+
 (function init() {
   const loadBtn = document.querySelector('[data-load-grid]');
   const exportBtn = document.querySelector('[data-export-grid]');
@@ -26,36 +29,6 @@
 
   const gridTemplate = document.querySelector('[bingo-grid-template]');
   const fieldTemplate = document.querySelector('[bingo-field-template]');
-
-  function showMessage(text) {
-    const body = document.querySelector('body');
-    const template = document.createElement('template');
-    const html = `<div class="message">
-    <div class="message-textbox">
-    <span class="message__text">
-    ${text}
-    </span>
-    <span class="material-icons md-24" style="cursor: pointer" data-cancel>cancel</span>
-    </div>
-    <div class="meter">
-    <span><span class="progress"></span></span>
-    </div>
-    </div>`;
-    template.innerHTML = html.trim();
-
-    const newNode = template.content.cloneNode(true).children[0];
-    const cancelBtn = newNode.querySelector('[data-cancel]');
-    cancelBtn.addEventListener('click', () => {
-      newNode.remove();
-    });
-
-    console.log(newNode);
-    body.appendChild(newNode);
-
-    setTimeout(() => {
-      newNode.remove();
-    }, 3000);
-  }
 
   function createSheetNode(content, id) {
     const slide = document.createElement('div');
