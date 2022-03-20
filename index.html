@@ -13,17 +13,8 @@
 
 <body>
   <!-- Nav gets inserted here -->
-  <canvas id="my-canvas" class="confetti-canvas"></canvas>
+  <!-- <canvas id="my-canvas" class="confetti-canvas"></canvas> -->
   <main>
-
-    <div class="button-container">
-      <h1 class="button-container__heading">Bingo</h1>
-      <button class="btn btn--text" data-reroll>
-        <span class="btn__icon material-icons md-48">refresh</span>
-        <span class="btn__text">new grid</span>
-      </button>
-    </div>
-
     <div class="bingo-grid" data-bingo-grid>
 
       <template bingo-field-template>
@@ -40,6 +31,10 @@
     </div>
 
     <div class="button-container">
+      <button class="btn btn--text" data-reroll>
+        <span class="btn__icon material-icons md-48">refresh</span>
+        <span class="btn__text">new grid</span>
+      </button>
       <button class="btn btn--text" data-save-grid>
         <span class="btn__icon material-icons md-48">save</span>
         <span class="btn__text">Save</span>

@@ -85,7 +85,6 @@ input[type="file"] {
 .header {
   background-color: #242424;
   width: 100%;
-  margin: 0 auto;
   position: fixed;
   top: 0;
   height: 60px;
@@ -93,15 +92,27 @@ input[type="file"] {
   z-index: 100;
   -webkit-box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .header__burger {
   width: 35px;
   height: 35px;
-  top: 22px;
-  left: 12px;
+  padding: 22px 12px;
   cursor: pointer;
-  position: fixed;
+}
+
+.header__title {
+  font-size: 2rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: rgba(255, 255, 255, 0.87);
+  margin: 0 auto;
+  padding-right: 57px;
+  white-space: nowrap;
 }
 
 .burger__bar {

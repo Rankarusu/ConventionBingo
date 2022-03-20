@@ -10,6 +10,7 @@
       <div id="bar2" class="burger__bar burger__bar--middle"></div>
       <div id="bar3" class="burger__bar burger__bar--bottom"></div>
     </div>
+    <div class="header__title">${document.title}</div>
   </div>
   <div id="nav-container">
   <div id="nav" class="sidebar">

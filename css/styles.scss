@@ -129,23 +129,27 @@ input[type="file"] {
 .header {
   background-color: $dp3;
   width           : 100%;
-  margin          : 0 auto;
   position        : fixed;
   top             : 0;
   height          : 60px;
   overflow        : hidden;
   z-index         : 100;
   box-shadow      : 1px 1px 2px 2px rgba(0, 0, 0, .2);
+  display: flex;
 
   &__burger {
     width : 35px;
     height: 35px;
-    top   : 22px;
-    left  : 12px;
-
+    padding: 22px 12px;
     cursor  : pointer;
-    position: fixed;
-
+  }
+  &__title{
+    font-size: 2rem;
+    align-self: center;
+    color: $onSurfaceHighEmphasis;
+    margin: 0 auto;
+    padding-right: 57px;
+    white-space: nowrap;
   }
 }
 
