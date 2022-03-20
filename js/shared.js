@@ -1,24 +1,40 @@
 (function init() {
   // add Navbar to each page at the beginning of Body.
   const body = document.querySelector('body');
-  const html = `<div id="screen-dim1" class="screen-dim"></div>
-<div id="screen-dim2" class="screen-dim"></div>
-<div class="header">
-  <div id="burger">
-    <div id="bar1" class="bar"></div>
-    <div id="bar2" class="bar"></div>
-    <div id="bar3" class="bar"></div>
+  const html = `  
+  <div id="screen-dim1" class="screen-dim"></div>
+  <div id="screen-dim2" class="screen-dim"></div>
+  <div class="header">
+    <div id="burger" class="header__burger burger">
+      <div id="bar1" class="burger__bar burger__bar--top"></div>
+      <div id="bar2" class="burger__bar burger__bar--middle"></div>
+      <div id="bar3" class="burger__bar burger__bar--bottom"></div>
+    </div>
   </div>
-</div>
-<div id="nav-container">
-  <div id="nav">
-    <ul>
-      <li><a href="index.html">Play</a></li>
-      <li><a href="edit.html">Edit</a></li>
-      <li><a href="savedSheets.html">Saved Sheets</a></li>
+  <div id="nav-container">
+  <div id="nav" class="sidebar">
+    <h2 class="sidebar__heading">ConventionBingo</h2>
+    <ul class="sidebar__nav-list nav-list">
+      <a href="index.html">
+        <li class="nav-list__item">
+          <span class="nav-list__icon material-icons md-48">play_arrow</span>
+          <span>Play</span>
+        </li>
+      </a>
+      <a href="edit.html">
+        <li class="nav-list__item">
+          <span class="nav-list__icon material-icons md-48">edit</span>
+          <span>Edit</span>
+        </li>
+      </a>
+      <a href="savedSheets.html">
+        <li class="nav-list__item">
+          <span class="nav-list__icon material-icons md-48">file_copy</span>
+          <span>Saved Sheets</span>
+        </li>
+      </a>
     </ul>
-  </div>
-                </div>`;
+  </div>`;
   const template = document.createElement('template');
   template.innerHTML = html.trim();
   const newNode = template.content.cloneNode(true);

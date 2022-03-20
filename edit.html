@@ -14,44 +14,44 @@
   <!-- Nav gets inserted here -->
   <main>
     <div class="search-wrapper">
-      <input type="text" id="search" placeholder="Search for fields" data-search>
-      <a class="btn" data-add>
-        <span class="material-icons md-24">add</span>
-      </a>
+      <input type="text" id="search" class="search-bar" placeholder="Search for fields" data-search>
+      <button class="btn" data-add>
+        <span class="btn__icon material-icons md-24">add</span>
+      </button>
     </div>
-    <div class="field-cards" data-cards-container>
+    <div class="cards-container" data-cards-container>
 
       <template field-template>
         <div class="card">
-          <div class="card-text" data-text>
+          <div class="card__text" data-text>
 
           </div>
-          <a class="btn" data-edit>
-            <span class="material-icons md-24" data-edit>edit</span>
-          </a>
-          <a class="btn" data-delete>
-            <span class="material-icons md-24">delete</span>
-          </a>
+          <button class="btn" data-edit>
+            <span class="btn__icon material-icons md-24" data-edit>edit</span>
+          </button>
+          <button class="btn" data-delete>
+            <span class="btn__icon material-icons md-24">delete</span>
+          </button>
         </div>
       </template>
 
     </div>
     <div class="modal" id="edit-modal">
-      <div class="modal-header">
+      <div class="modal__header">
         <span data-modal-header></span>
       </div>
-      <div class="modal-content">
-        <textarea maxlength="100" placeholder="add a field..." data-text-input></textarea>
+      <div class="modal__content">
+        <textarea class="modal__input" maxlength="100" data-text-input></textarea>
       </div>
-      <div class="modal-footer">
-        <a class="btn text-btn" data-save>
-          <span class="material-icons md-24">save</span>
-          <span>Save</span>
-        </a>
-        <a class="btn text-btn" data-cancel>
-          <span class="material-icons md-24">cancel</span>
-          <span>Cancel</span>
-        </a>
+      <div class="modal__footer">
+        <button class="btn btn--text" data-save>
+          <span class="button__icon material-icons md-24">save</span>
+          <span class="btn__text">Save</span>
+        </button>
+        <button class="btn btn--text" data-cancel>
+          <span class="btn__icon material-icons md-24">cancel</span>
+          <span class="btn__text">Cancel</span>
+        </button>
       </div>
     </div>
   </main>

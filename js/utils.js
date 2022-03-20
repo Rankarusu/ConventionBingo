@@ -2,14 +2,14 @@ export function showMessage(text) {
   const body = document.querySelector('body');
   const template = document.createElement('template');
   const html = `<div class="message">
-    <div class="message-textbox">
+    <div class="message__textbox">
     <span class="message__text">
     ${text}
     </span>
-    <span class="material-icons md-24" style="cursor: pointer" data-cancel>cancel</span>
+    <span class="message__icon material-icons md-24" data-cancel>cancel</span>
     </div>
-    <div class="meter">
-    <span><span class="progress"></span></span>
+    <div class="message__meter">
+    <span class="message__progress-bg"><span class="message__progress"></span></span>
     </div>
     </div>`;
   template.innerHTML = html.trim();

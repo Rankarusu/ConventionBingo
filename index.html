@@ -13,24 +13,24 @@
 
 <body>
   <!-- Nav gets inserted here -->
-  <canvas id="my-canvas"></canvas>
+  <canvas id="my-canvas" class="confetti-canvas"></canvas>
   <main>
 
     <div class="button-container">
-      <h1>Bingo</h1>
-      <a class="btn text-btn" data-reroll>
-        <span class="material-icons md-48">refresh</span>
-        <span>new grid</span>
-      </a>
+      <h1 class="button-container__heading">Bingo</h1>
+      <button class="btn btn--text" data-reroll>
+        <span class="btn__icon material-icons md-48">refresh</span>
+        <span class="btn__text">new grid</span>
+      </button>
     </div>
 
     <div class="bingo-grid" data-bingo-grid>
 
       <template bingo-field-template>
         <div class="bingo-field" data-bingo-field>
-          <input type="checkbox" data-bingo-checkbox />
-          <div>
-            <span data-bingo-field-text>
+          <input type="checkbox" class="bingo-field__input" data-bingo-checkbox />
+          <div class="bingo-field__inner">
+            <span class="bingo-field__text" data-bingo-field-text>
 
             </span>
           </div>
@@ -40,33 +40,33 @@
     </div>
 
     <div class="button-container">
-      <a class="btn text-btn" data-save-grid>
-        <span class="material-icons md-48">save</span>
-        <span>Save</span>
-      </a>
-      <a class="btn text-btn" data-mode="">
-        <span class="material-icons md-48">edit</span>
-        <span data-edit-btn-text>Edit</span>
-      </a>
+      <button class="btn btn--text" data-save-grid>
+        <span class="btn__icon material-icons md-48">save</span>
+        <span class="btn__text">Save</span>
+      </button>
+      <button class="btn btn--text" data-mode="">
+        <span class="btn__icon material-icons md-48">edit</span>
+        <span class="btn__text" data-edit-btn-text>Edit</span>
+      </button>
     </div>
   </main>
 
   <div class="modal" id="edit-modal">
-    <div class="modal-header">
+    <div class="modal__header">
       <span data-modal-header></span>
     </div>
-    <div class="modal-content">
-      <textarea maxlength="100" data-text-input></textarea>
+    <div class="modal__content">
+      <textarea class="modal__input" maxlength="100" data-text-input></textarea>
     </div>
-    <div class="modal-footer">
-      <a class="btn text-btn" data-save>
-        <span class="material-icons md-24">save</span>
-        <span>Save</span>
-      </a>
-      <a class="btn text-btn" data-cancel>
-        <span class="material-icons md-24">cancel</span>
-        <span>Cancel</span>
-      </a>
+    <div class="modal__footer">
+      <button class="btn btn--text" data-save>
+        <span class="button__icon material-icons md-24">save</span>
+        <span class="btn__text">Save</span>
+      </button>
+      <button class="btn btn--text" data-cancel>
+        <span class="btn__icon material-icons md-24">cancel</span>
+        <span class="btn__text">Cancel</span>
+      </button>
     </div>
   </div>
 

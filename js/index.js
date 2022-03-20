@@ -43,6 +43,8 @@ import { showMessage, readData } from './utils.js';
     modalText.innerText = text;
     dimmer2.classList.toggle('show');
     modal.classList.toggle('show');
+    window.setTimeout(() => modalText.focus(), 100);
+    // automatically places cursor into the modal. timeout is needed for whatever reason.
   }
   class BingoField {
     constructor(id, text, element, checked = false) {
@@ -203,7 +205,7 @@ import { showMessage, readData } from './utils.js';
 
     fields.forEach((field) => {
       const el = field;
-      el.checkbox.classList.toggle('input-disabled');
+      el.checkbox.classList.toggle('bingo-field__input--disabled');
     });
   }
 

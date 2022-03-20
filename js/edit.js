@@ -35,8 +35,10 @@ import { showMessage, readData } from './utils.js';
   function toggleModal(head = '', text = '') {
     modalHeader.innerText = head;
     modalText.value = text;
+    modalText.innerText = text;
     dimmer2.classList.toggle('show');
     modal.classList.toggle('show');
+    window.setTimeout(() => modalText.focus(), 100);
   }
   class Field {
     constructor(id, text, element) {
