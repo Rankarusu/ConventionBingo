@@ -1,13 +1,20 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-alert */
-import { showMessage } from './utils.js';
+import { showMessage, bingoGridTemplate, bingoFieldTemplateDisabled } from './utils.js';
 
 (function init() {
   const loadBtn = document.querySelector('[data-load-grid]');
   const exportBtn = document.querySelector('[data-export-grid]');
   const importBtn = document.querySelector('[data-import-grid]');
   const deleteBtn = document.querySelector('[data-delete-grid]');
+
+  const fieldTemplate = document.createElement('template');
+  fieldTemplate.innerHTML = bingoFieldTemplateDisabled.trim();
+
+  const gridTemplate = document.createElement('template');
+  gridTemplate.innerHTML = bingoGridTemplate.trim();
+
   // eslint-disable-next-line no-undef
   const swiper = new Swiper('.swiper', {
     // Optional parameters
@@ -26,9 +33,6 @@ import { showMessage } from './utils.js';
       prevEl: '.swiper-button-prev',
     },
   });
-
-  const gridTemplate = document.querySelector('[bingo-grid-template]');
-  const fieldTemplate = document.querySelector('[bingo-field-template]');
 
   function createSheetNode(content, id) {
     const slide = document.createElement('div');

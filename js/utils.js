@@ -58,3 +58,41 @@ export async function readData() {
   }
   return fields;
 }
+
+export const bingoFieldTemplate = `
+<div class="bingo-field" data-bingo-field>
+<input type="checkbox" class="bingo-field__input" data-bingo-checkbox />
+<div class="bingo-field__inner">
+  <span class="bingo-field__text" data-bingo-field-text>
+
+  </span>
+</div>
+</div>`;
+
+export const bingoFieldTemplateDisabled = `
+<div class="bingo-field" style="pointer-events: none" data-bingo-field>
+  <input type="checkbox" class="bingo-field__input" style="pointer-events: none" data-bingo-checkbox />
+  <div class="bingo-field__inner">
+    <span class="bingo-field__text" data-bingo-field-text>
+
+    </span>
+  </div>
+</div>
+</template>`;
+
+export const bingoGridTemplate = `
+<div class="bingo-grid" data-bingo-grid>
+</div>`;
+
+export const editCardTemplate = `
+<div class="card">
+  <div class="card__text" data-text>
+
+  </div>
+  <button class="btn" data-edit>
+    <span class="btn__icon material-icons md-24" data-edit>edit</span>
+  </button>
+  <button class="btn" data-delete>
+    <span class="btn__icon material-icons md-24">delete</span>
+  </button>
+</div>`;

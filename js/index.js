@@ -1,11 +1,14 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
-import { showMessage, readData } from './utils.js';
+import { showMessage, readData, bingoFieldTemplate } from './utils.js';
 
 (async function init() {
   console.log('test');
   const dimmer2 = document.getElementById('screen-dim2');
-  const template = document.querySelector('[bingo-field-template]');
+
+  const template = document.createElement('template');
+  template.innerHTML = bingoFieldTemplate.trim();
+
   const grid = document.querySelector('[data-bingo-grid]');
   const rerollbtn = document.querySelector('[data-reroll]');
   const modal = document.querySelector('#edit-modal');

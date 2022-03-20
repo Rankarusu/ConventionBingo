@@ -1,13 +1,15 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
-import { showMessage, readData } from './utils.js';
+import { showMessage, readData, editCardTemplate } from './utils.js';
 
 (async function init() {
   const dimmer2 = document.getElementById('screen-dim2');
+  const template = document.createElement('template');
+  template.innerHTML = editCardTemplate.trim();
 
   /** ****************************** SEARCHBAR ******************************* */
 
-  const fieldTemplate = document.querySelector('[field-template]');
+  // const fieldTemplate = document.querySelector('[field-template]');
   const searchInput = document.querySelector('[data-search]');
 
   let fields = [];
@@ -76,7 +78,7 @@ import { showMessage, readData } from './utils.js';
    * if omitted, a new id will be generated.
    */
   function createCard(field, id = null) {
-    const card = fieldTemplate.content.cloneNode(true).children[0];
+    const card = template.content.cloneNode(true).children[0];
     const cardText = card.querySelector('[data-text]');
 
     cardText.innerText = field;
