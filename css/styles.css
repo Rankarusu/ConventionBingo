@@ -394,6 +394,9 @@ main {
   cursor: pointer;
   gap: .5rem;
   margin: .5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-position: center;
   -webkit-transition: background 0.8s;
   transition: background 0.8s;
@@ -415,7 +418,7 @@ main {
 
 .btn--text {
   padding: .5rem;
-  min-width: 10rem;
+  min-width: 15rem;
   font-size: 1.5rem;
 }
 
