@@ -121,6 +121,5 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
   fields = Object.keys(lsFields)
     .sort((a, b) => lsFields[a].localeCompare(lsFields[b], 'en', { sensitivity: 'base' }))
     .map((key) => createCard(lsFields[key], key));
-  console.log(fields);
   // TODO: add a reset button somewhere
 }());

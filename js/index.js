@@ -3,7 +3,6 @@
 import { showMessage, readData, bingoFieldTemplate } from './utils.js';
 
 (async function init() {
-  console.log('test');
   const dimmer2 = document.getElementById('screen-dim2');
 
   const template = document.createElement('template');
@@ -109,13 +108,13 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
     // get all ids of checked bingo fields
     const checked = fields.filter((field) => field.checkbox.checked === true)
       .map((field) => field.id);
-    // console.log(checked);
+
     // start evaluating once 5 or more are checked
     if (checked.length >= 5) {
       for (let i = 0; i < winnningRows.length; i += 1) {
         const row = winnningRows[i];
         if (row.every((field) => checked.includes(field))) {
-          // console.log('win');
+
           // eslint-disable-next-line no-undef
           confetti({
             particleCount: 100,
@@ -131,25 +130,18 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
   }
 
   function populateGrid() {
-    console.log(1);
     while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
     }
-    console.log(1);
 
     const lsKeys = Object.keys(lsFields);
-    console.log(1);
     // i need the utility of indices for the random selection so this is kinda mandatory.
     const lsValues = lsKeys.map((key) => (lsFields[key]));
-    console.log(1);
     // make a set of 25 random numbers that are no higher than the amount of fields in ls.
     let nums = new Set();
-    console.log(lsFields.length);
-    console.log(lsFields);
     while (nums.size !== 25) {
       nums.add(Math.floor(Math.random() * lsKeys.length));
     }
-    console.log(1);
 
     nums = Array.from(nums);
     const fields = [];
@@ -217,16 +209,11 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
 
   let fields = [];
   // TODO: validate localstorage
-  console.log(localStorage.getItem('currentSheet'));
   if (localStorage.getItem('currentSheet')) {
-    console.log('a');
     fields = loadGrid();
-    console.log(fields);
   } else {
-    console.log('b');
     // TODO: check if there are even any cards, or rather enough.
     fields = populateGrid();
-    console.log(fields);
   }
 
   const saveGridBtn = document.querySelector('[data-save-grid]');
