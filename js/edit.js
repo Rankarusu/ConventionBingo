@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
 import { showMessage, readData, editCardTemplate } from './utils.js';
@@ -5,6 +7,7 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
 (async function init() {
   const dimmer2 = document.getElementById('screen-dim2');
   const template = document.createElement('template');
+  const numberDisplay = document.querySelector('[data-card-amount');
   template.innerHTML = editCardTemplate.trim();
 
   /** ****************************** SEARCHBAR ******************************* */
@@ -29,6 +32,7 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
   const modal = document.querySelector('#edit-modal');
   const addbtn = document.querySelector('[data-add]');
   const cancelbtn = document.querySelector('[data-cancel]');
+  const resetbtn = document.querySelector('[data-reset]');
 
   const modalHeader = modal.querySelector('[data-modal-header]');
   const modalText = modal.querySelector('[data-text-input]');
@@ -41,6 +45,19 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
     dimmer2.classList.toggle('show');
     modal.classList.toggle('show');
     window.setTimeout(() => modalText.focus(), 100);
+  }
+
+  function updateAmount() {
+    const amount = Object.keys(localStorage).filter((card) => card.includes('card')).length;
+    numberDisplay.innerText = `${amount} entries`;
+    if (amount < 24) {
+      if (confirm(
+        `You do not have enough fields to play a game.
+Press "OK" to reset all fields and reload the page
+Press "Cancel" to add more manually`) === true) {
+        location.reload();
+      }
+    }
   }
   class Field {
     constructor(id, text, element) {
@@ -70,6 +87,8 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
     delete() {
       this.element.remove();
       localStorage.removeItem(this.id);
+      showMessage('card deleted.');
+      updateAmount();
     }
   }
 
@@ -85,7 +104,7 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
     card.dataset.id = id;
 
     const fieldObj = new Field(id, field, card);
-    cardsContainer.append(card);
+    cardsContainer.prepend(card);
 
     let num = localStorage.getItem('next');
     if (!localStorage.next) {
@@ -106,12 +125,21 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
       createCard(modalText.value);
       toggleModal(); // hide
       showMessage('new card added.');
+      updateAmount();
     };
+  }
+  function resetFields() {
+    if (confirm('This will reset all fields and reload the page.\nAre you sure?')) {
+      const cards = Object.keys(localStorage).filter((card) => card.includes('card'));
+      cards.forEach((card) => localStorage.removeItem(card));
+      location.reload();
+    }
   }
 
   addbtn.onclick = addNewCard;
   cancelbtn.onclick = toggleModal;
   dimmer2.onclick = toggleModal;
+  resetbtn.onclick = resetFields;
 
   /** ****************************** DATA ******************************* */
   const lsFields = await readData();
@@ -119,7 +147,8 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
   // create cards from them.
 
   fields = Object.keys(lsFields)
-    .sort((a, b) => lsFields[a].localeCompare(lsFields[b], 'en', { sensitivity: 'base' }))
+    .sort((b, a) => lsFields[a].localeCompare(lsFields[b], 'en', { sensitivity: 'base' }))
     .map((key) => createCard(lsFields[key], key));
   // TODO: add a reset button somewhere
+  updateAmount();
 }());

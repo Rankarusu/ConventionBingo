@@ -114,7 +114,6 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
       for (let i = 0; i < winnningRows.length; i += 1) {
         const row = winnningRows[i];
         if (row.every((field) => checked.includes(field))) {
-
           // eslint-disable-next-line no-undef
           confetti({
             particleCount: 100,

@@ -379,6 +379,12 @@ main {
   font-size: 4em;
 }
 
+.button-container__text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  padding: 1.5rem;
+}
+
 .btn {
   color: #000000;
   display: -webkit-box;
@@ -601,17 +607,17 @@ main {
 .modal__input:focus {
   outline: none;
   background-color: #26202e;
-  -webkit-box-shadow: inset 0pc 0px 0px 2px #BB86FC;
-          box-shadow: inset 0pc 0px 0px 2px #BB86FC;
+  -webkit-box-shadow: inset 0px 0px 0px 2px #BB86FC;
+          box-shadow: inset 0px 0px 0px 2px #BB86FC;
 }
 
 .modal__footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: .5rem;
   padding: 1rem;
 }
@@ -646,6 +652,8 @@ main {
   top: 5rem;
   right: .5rem;
   background-color: #242424;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
   z-index: 1;
   gap: .5rem;
   -webkit-animation: fadeInOut 3s;
@@ -671,6 +679,10 @@ main {
 .message__text {
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.message__icon {
+  cursor: pointer;
 }
 
 .message__meter {

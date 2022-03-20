@@ -382,6 +382,11 @@ main {
     font-size: 4em;
   }
 
+  &__text {
+    color    : $onSurfaceMediumEmphasis;
+    font-size: 1.5rem;
+    padding  : 1.5rem;
+  }
 }
 
 .btn {
@@ -559,14 +564,14 @@ main {
     &:focus {
       outline         : none;
       background-color: $onSurfacePrimaryFocused;
-      box-shadow      : inset 0pc 0px 0px 2px $primary;
+      box-shadow      : inset 0px 0px 0px 2px $primary;
     }
 
   }
 
   &__footer {
     display        : flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap            : .5rem;
     padding        : 1rem;
   }
@@ -598,6 +603,7 @@ main {
   top             : 5rem;
   right           : .5rem;
   background-color: $dp3;
+  box-shadow      : 1px 1px 1px 1px rgba(0, 0, 0, .2);
 
   z-index: 1;
   gap    : .5rem;
@@ -614,6 +620,10 @@ main {
   &__text {
     word-wrap    : break-word;
     overflow-wrap: break-word;
+  }
+
+  &__icon {
+    cursor: pointer;
   }
 
   &__meter {

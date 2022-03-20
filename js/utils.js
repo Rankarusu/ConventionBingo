@@ -32,7 +32,7 @@ export async function readData() {
   let fields = [];
   /// get fields
   const cardKeys = Object.keys(localStorage).filter((card) => card.includes('card'));
-  if (cardKeys.length === 0) {
+  if (cardKeys.length < 24) {
     // TODO: throw some error if under 24 fields.
     // make sure remaining data is cleaned and read from json.
     localStorage.clear();
