@@ -199,8 +199,8 @@ input[type="file"] {
 /******************************** SIDEBAR ********************************/
 
 .sidebar {
-  transform       : translateX(-35vw);
-  width           : 30vw;
+  transform       : translateX(-45vw);
+  width           : 40vw;
   height          : 100vh;
   background-color: $dp2;
   z-index         : 99;
@@ -272,17 +272,12 @@ main {
   margin   : auto;
   padding  : 60px 2rem;
   z-index  : 1;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
-@media screen and (max-width: 1080px) {
-  main {
-    padding: 60px 0.5rem;
-  }
-}
 
 .bingo-grid {
-  max-width            : 800px;
+  max-width            : 78vh;
   margin               : 2rem auto;
   display              : grid;
   grid-template-columns: repeat(5, 1fr);
@@ -377,6 +372,7 @@ main {
   flex-direction : row;
   justify-content: space-between;
   align-items    : center;
+  flex-wrap: wrap;
 
   &__heading {
     font-size: 4em;
@@ -478,6 +474,7 @@ main {
   padding        : 1rem;
   gap            : .5rem;
   align-items    : center;
+  overflow: hidden;
 
   &:hover {
     background-color: $dp1Hover;

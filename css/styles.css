@@ -151,9 +151,9 @@ input[type="file"] {
 
 /******************************** SIDEBAR ********************************/
 .sidebar {
-  -webkit-transform: translateX(-35vw);
-          transform: translateX(-35vw);
-  width: 30vw;
+  -webkit-transform: translateX(-45vw);
+          transform: translateX(-45vw);
+  width: 40vw;
   height: 100vh;
   background-color: #212121;
   z-index: 99;
@@ -240,17 +240,11 @@ main {
   margin: auto;
   padding: 60px 2rem;
   z-index: 1;
-  max-width: 1000px;
-}
-
-@media screen and (max-width: 1080px) {
-  main {
-    padding: 60px 0.5rem;
-  }
+  max-width: 1200px;
 }
 
 .bingo-grid {
-  max-width: 800px;
+  max-width: 78vh;
   margin: 2rem auto;
   display: -ms-grid;
   display: grid;
@@ -373,6 +367,8 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .button-container__heading {
@@ -500,6 +496,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow: hidden;
 }
 
 .card:hover {
