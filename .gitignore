@@ -3,3 +3,4 @@ data/test.json
 .vscode
 css/styles.css
 css/styles.css.map
+node_modules
