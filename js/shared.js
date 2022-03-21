@@ -1,4 +1,7 @@
 (async function init() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/serviceWorker.js');
+  }
   // add Navbar to each page at the beginning of Body.
   const body = document.querySelector('body');
   const html = `  
