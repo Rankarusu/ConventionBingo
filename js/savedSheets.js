@@ -20,6 +20,7 @@ import { showMessage, bingoGridTemplate, bingoFieldTemplateDisabled } from './ut
     // Optional parameters
     direction: 'horizontal',
     loop: false,
+    spaceBetween: 20,
 
     // If we need pagination
     pagination: {

@@ -186,7 +186,7 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
     if (editModeBtn.dataset.mode === '') {
       editModeBtn.dataset.mode = 'edit';
 
-      editModeBtnText.innerText = 'Stop editing';
+      editModeBtnText.innerText = 'Resume';
 
       // I have no clue how to do this another way
       // eslint-disable-next-line no-return-assign

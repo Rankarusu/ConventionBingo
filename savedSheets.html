@@ -3,13 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saved Sheets</title>
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="/node_modules/swiper/swiper-bundle.css">
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js" defer></script> -->
   <script src="/node_modules/swiper/swiper-bundle.min.js" defer></script>
   <script type="module" src="js/shared.js" defer></script>
   <script type="module" src="js/savedSheets.js" defer></script>
@@ -18,39 +16,42 @@
 <body>
   <!-- Nav gets inserted here -->
   <main>
-    <!-- Slider main container -->
-    <div class="swiper">
-      <!-- Additional required wrapper -->
-      <div id="swiper-wrapper" class="swiper-wrapper">
-        <!-- Slides -->
+    <div class="grid-wrapper">
+      <!-- Slider main container -->
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div id="swiper-wrapper" class="swiper-wrapper">
+          <!-- Slides -->
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
       </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-
     </div>
     <div class="button-container">
-      <button class="btn btn--text" data-load-grid>
+      <button class="btn btn--text btn--flex" data-load-grid>
         <span class="btn__icon material-icons md-48">upload</span>
         <span class="btn__text">Load</span>
       </button>
-      <button class="btn btn--text" data-delete-grid>
+      <button class="btn btn--text btn--flex" data-delete-grid>
         <span class="btn__icon material-icons md-48">delete</span>
         <span class="btn__text">Delete</span>
       </button>
-      <label class="btn btn--text" data-import-grid>
+      <label class="btn btn--text btn--flex" data-import-grid>
         <input type="file" accept=".json" />
         <span class="btn__icon material-icons md-48">download</span>
         <span class="btn__text">Import</span>
       </label>
-      <button class="btn btn--text" data-export-grid>
+      <button class="btn btn--text btn--flex" data-export-grid>
         <span class="btn__icon material-icons md-48">share</span>
         <span class="btn__text">Share</span>
       </button>
     </div>
   </main>
 </body>
+
 </html>

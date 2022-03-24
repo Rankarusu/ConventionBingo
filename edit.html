@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Fields</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title>Edit Fields</title>
   <script type="module" src="js/shared.js" defer></script>
   <script type="module" src="js/edit.js" defer></script>
 </head>
@@ -21,14 +22,18 @@
     </div>
     <div class="cards-container" data-cards-container>
       <!-- Cards get inserted here -->
-    <div class="button-container">
-      <button class="btn btn--text" data-reset>
-        <span class="btn__icon material-icons md-48">sync</span>
-        <span class="btn__text">reset fields</span>
-      </button>
-      <span class="button-container__text" data-card-amount>0</span>
     </div>
-  </div>
+
+    <div class="cards-container">
+
+      <div class="button-container">
+        <button class="btn btn--text" data-reset>
+          <span class="btn__icon material-icons md-48">sync</span>
+          <span class="btn__text">reset fields</span>
+        </button>
+        <span class="button-container__text" data-card-amount>0</span>
+      </div>
+    </div>
 
   </main>
 
@@ -39,7 +44,7 @@
     <div class="modal__content">
       <textarea class="modal__input" maxlength="100" data-text-input></textarea>
     </div>
-    <div class="modal__footer">
+    <div class="modal__footer button-container">
       <button class="btn btn--text" data-save>
         <span class="button__icon material-icons md-24">save</span>
         <span class="btn__text">Save</span>
