@@ -10,6 +10,8 @@
 }
 
 button,
+p,
+a,
 input[type="submit"],
 input[type="reset"] {
   all: unset;
@@ -442,6 +444,14 @@ main {
   font-size: 1.5rem;
 }
 
+.btn__img--large {
+  width: 4rem;
+}
+
+.btn__img--small {
+  width: 1.5rem;
+}
+
 /******************************** EDIT ********************************/
 .search-wrapper {
   display: -webkit-box;
@@ -792,5 +802,26 @@ main {
   100% {
     opacity: 0;
   }
+}
+
+.about-text {
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: .5rem;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #1d1d1d;
+  padding: 1rem;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
 }
 /*# sourceMappingURL=styles.css.map */

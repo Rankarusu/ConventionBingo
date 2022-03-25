@@ -37,6 +37,12 @@
           <span>Saved Sheets</span>
         </li>
       </a>
+      <a href="about.html">
+      <li class="nav-list__item">
+        <span class="nav-list__icon material-icons md-48">info</span>
+        <span>About</span>
+      </li>
+    </a>
     </ul>
   </div>`;
   const template = document.createElement('template');

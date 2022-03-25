@@ -8,6 +8,8 @@
 
 //reset button styling
 button,
+p,
+a,
 input[type="submit"],
 input[type="reset"] {
   all: unset;
@@ -431,6 +433,15 @@ main {
     // min-width: 12.5rem;
     font-size   : 1.5rem;
   }
+
+  &__img {
+    &--large{
+      width: 4rem;
+    }
+    &--small{
+      width: 1.5rem;
+    }
+  }
 }
 
 /******************************** EDIT ********************************/
@@ -712,4 +723,17 @@ main {
   100% {
     opacity: 0;
   }
+}
+
+.about-text {
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .2);
+  border-radius   : .5rem;
+  margin: 1rem 0;
+  display         : flex;
+  background-color: $dp1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
