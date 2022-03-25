@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
-import { showMessage, readData, editCardTemplate } from './utils.js';
+import { showMessage, readDataFromLS, readDataFromJSON, editCardTemplate } from './utils.js';
 
 (async function init() {
   const dimmer2 = document.getElementById('screen-dim2');
@@ -50,14 +50,6 @@ import { showMessage, readData, editCardTemplate } from './utils.js';
   function updateAmount() {
     const amount = Object.keys(localStorage).filter((card) => card.includes('card')).length;
     numberDisplay.innerText = `${amount} entries`;
-    if (amount < 24) {
-      if (confirm(
-        `You do not have enough fields to play a game.
-Press "OK" to reset all fields and reload the page
-Press "Cancel" to add more manually`) === true) {
-        location.reload();
-      }
-    }
   }
   class Field {
     constructor(id, text, element) {
@@ -130,8 +122,7 @@ Press "Cancel" to add more manually`) === true) {
   }
   function resetFields() {
     if (confirm('This will reset all fields and reload the page.\nAre you sure?')) {
-      const cards = Object.keys(localStorage).filter((card) => card.includes('card'));
-      cards.forEach((card) => localStorage.removeItem(card));
+      readDataFromJSON();
       location.reload();
     }
   }
@@ -142,7 +133,8 @@ Press "Cancel" to add more manually`) === true) {
   resetbtn.onclick = resetFields;
 
   /** ****************************** DATA ******************************* */
-  const lsFields = await readData();
+  const cardKeys = Object.keys(localStorage).filter((card) => card.includes('card'));
+  const lsFields = await readDataFromLS(cardKeys);
   // use the keys because we nee both key and value, sort them alphabetically and
   // create cards from them.
 

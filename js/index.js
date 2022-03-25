@@ -1,6 +1,6 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
-/* eslint-disable no-console */
-import { showMessage, readData, bingoFieldTemplate } from './utils.js';
+import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
 
 (async function init() {
   const dimmer2 = document.getElementById('screen-dim2');
@@ -37,7 +37,7 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
     [4, 8, 12, 16, 20],
   ];
 
-  const lsFields = await readData();
+  const lsFields = await checkCards();
 
   function toggleModal(head = '', text = '') {
     modalHeader.innerText = head;
@@ -79,7 +79,6 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
   }
 
   function saveGrid(fields, name = 'currentSheet') {
-    console.log('saving...');
     const sheetObj = fields.map((field) => {
       const fieldObj = {
         id: field.id,
@@ -207,11 +206,10 @@ import { showMessage, readData, bingoFieldTemplate } from './utils.js';
   dimmer2.onclick = toggleModal;
 
   let fields = [];
-  // TODO: validate localstorage
+  // TODO: validate localstorage completely
   if (localStorage.getItem('currentSheet')) {
     fields = loadGrid();
   } else {
-    // TODO: check if there are even any cards, or rather enough.
     fields = populateGrid();
   }
 
