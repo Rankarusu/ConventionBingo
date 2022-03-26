@@ -1,8 +1,9 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable import/extensions */
-/* eslint-disable no-console */
-import { showMessage, readDataFromLS, readDataFromJSON, editCardTemplate } from './utils.js';
+import {
+  showMessage, readDataFromLS, readDataFromJSON, editCardTemplate,
+} from './utils.js';
 
 (async function init() {
   const dimmer2 = document.getElementById('screen-dim2');

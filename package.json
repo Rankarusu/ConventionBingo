@@ -2,7 +2,6 @@
   "name": "conventionbingo",
   "version": "1.0.0",
   "description": "a buzzword-bingo-esque to play with your weeb friends at conventions",
-  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

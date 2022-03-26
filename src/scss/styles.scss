@@ -435,10 +435,11 @@ main {
   }
 
   &__img {
-    &--large{
+    &--large {
       width: 4rem;
     }
-    &--small{
+
+    &--small {
       width: 1.5rem;
     }
   }
@@ -483,7 +484,7 @@ main {
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .2);
 
   border-radius   : .5rem;
-  margin-bottom      : 1rem;
+  margin-bottom   : 1rem;
   display         : flex;
   flex-direction  : column;
   background-color: $dp1;
@@ -602,8 +603,8 @@ main {
 
 /****************** SWIPER ***************/
 
-.swiper{
-  padding: 3rem ;
+.swiper {
+  padding   : 3rem;
   margin-top: -3rem;
 }
 
@@ -615,7 +616,7 @@ main {
   --swiper-theme-color: #{$primary};
 }
 
-.swiper-pagination-bullets{
+.swiper-pagination-bullets {
   bottom: 1rem !important;
 
   @media (max-width: 768px) {
@@ -628,7 +629,7 @@ main {
 }
 
 .swiper-button-prev {
-  left : 0;
+  left: 0;
 }
 
 .message {
@@ -719,14 +720,14 @@ main {
 }
 
 .about-text {
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .2);
+  box-shadow      : 1px 1px 1px 1px rgba(0, 0, 0, .2);
   border-radius   : .5rem;
-  margin: 1rem 0;
+  margin          : 1rem 0;
   display         : flex;
   background-color: $dp1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
+  padding         : 1rem;
+  display         : flex;
+  flex-direction  : row;
+  align-items     : center;
+  gap             : 1rem;
 }
