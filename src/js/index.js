@@ -19,6 +19,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
 
   const editModeBtn = document.querySelector('[data-mode]');
   const editModeBtnText = editModeBtn.querySelector('[data-edit-btn-text]');
+  const editModeBtnIcon = editModeBtn.querySelector('[data-edit-btn-icon]');
   const winnningRows = [
     // horizontal rows
     [0, 1, 2, 3, 4],
@@ -186,6 +187,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
       editModeBtn.dataset.mode = 'edit';
 
       editModeBtnText.innerText = 'Resume';
+      editModeBtnIcon.innerText = 'edit_off';
 
       // I have no clue how to do this another way
       // eslint-disable-next-line no-return-assign
@@ -193,6 +195,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
     } else {
       editModeBtn.dataset.mode = '';
       editModeBtnText.innerText = 'Edit';
+      editModeBtnIcon.innerText = 'edit';
       fields.forEach((field) => field.element.removeEventListener('click', field.editmode));
     }
 

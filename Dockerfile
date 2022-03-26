@@ -17,4 +17,4 @@ FROM nginx
 
 COPY --from=builder /app/ /usr/share/nginx/html/
 
-EXPOSE 80
+EXPOSE 80 443

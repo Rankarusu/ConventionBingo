@@ -60,6 +60,11 @@ input[type="reset"] {
 }
 
 /********************************  ********************************/
+@font-face {
+  font-family: "Fira Mono";
+  src: url("../fonts/FiraMono-Regular.ttf");
+}
+
 body {
   color: #ffffff;
   font-family: "Fira Mono", sans-serif;
@@ -380,8 +385,8 @@ main {
   position: absolute;
   top: 0.625rem;
   right: 0.625rem;
-  content: '\f044';
-  font-family: FontAwesome;
+  content: '\e22b';
+  font-family: 'Material Icons';
 }
 
 .button-container {
