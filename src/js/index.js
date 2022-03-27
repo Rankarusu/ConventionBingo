@@ -104,7 +104,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
     saveGrid(fields, `sheet${highestIndex + 1}`);
   }
 
-  function checkWin(fields) {
+  function checkWin(fields, checkedItem) {
     // get all ids of checked bingo fields
     const checked = fields.filter((field) => field.checkbox.checked === true)
       .map((field) => field.id);
@@ -113,7 +113,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
     if (checked.length >= 5) {
       for (let i = 0; i < winnningRows.length; i += 1) {
         const row = winnningRows[i];
-        if (row.every((field) => checked.includes(field))) {
+        if (row.every((field) => checked.includes(field)) && row.includes(checkedItem.id)) {
           // eslint-disable-next-line no-undef
           confetti({
             particleCount: 100,
@@ -158,7 +158,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
     fields.forEach((field) => field.checkbox.addEventListener('change', () => {
       // only display confetti on check and not on uncheck.
       if (field.checkbox.checked) {
-        checkWin(fields);
+        checkWin(fields, field);
       }
     }));
 
@@ -174,7 +174,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
       const element = createBingoField(field.id, field.text, field.checked);
       element.checkbox.addEventListener('change', () => {
         if (element.checkbox.checked) {
-          checkWin(fields);
+          checkWin(fields, field);
         }
       });
       fields.push(element);
