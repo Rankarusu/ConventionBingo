@@ -85,7 +85,6 @@ export const bingoFieldTemplate = `
 <input type="checkbox" class="bingo-field__input" data-bingo-checkbox />
 <div class="bingo-field__inner">
   <span class="bingo-field__text" data-bingo-field-text>
-
   </span>
 </div>
 </div>`;
@@ -95,7 +94,6 @@ export const bingoFieldTemplateDisabled = `
   <input type="checkbox" class="bingo-field__input" style="pointer-events: none" data-bingo-checkbox />
   <div class="bingo-field__inner">
     <span class="bingo-field__text" data-bingo-field-text>
-
     </span>
   </div>
 </div>
@@ -110,10 +108,10 @@ export const editCardTemplate = `
   <div class="card__text" data-text>
 
   </div>
-  <button class="btn" data-edit>
-    <span class="btn__icon material-icons md-24" data-edit>edit</span>
+  <button class="btn btn--square" data-edit>
+    <span class="btn__icon material-icons md-18" data-edit>edit</span>
   </button>
-  <button class="btn" data-delete>
-    <span class="btn__icon material-icons md-24">delete</span>
+  <button class="btn btn--square" data-delete>
+    <span class="btn__icon material-icons md-18">delete</span>
   </button>
 </div>`;

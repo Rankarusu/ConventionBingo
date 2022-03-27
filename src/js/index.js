@@ -11,11 +11,11 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
   const grid = document.querySelector('[data-bingo-grid]');
   const rerollbtn = document.querySelector('[data-reroll]');
   const modal = document.querySelector('#edit-modal');
-  const cancelbtn = document.querySelector('[data-cancel]');
 
   const modalHeader = modal.querySelector('[data-modal-header]');
   const modalText = modal.querySelector('[data-text-input]');
   const savebtn = modal.querySelector('[data-save]');
+  const cancelbtn = modal.querySelector('[data-cancel]');
 
   const editModeBtn = document.querySelector('[data-mode]');
   const editModeBtnText = editModeBtn.querySelector('[data-edit-btn-text]');
@@ -205,8 +205,9 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
     });
   }
 
-  cancelbtn.onclick = toggleModal;
-  dimmer2.onclick = toggleModal;
+  // cancelbtn.onclick = toggleModal;
+  cancelbtn.addEventListener('click', () => { toggleModal(); });
+  dimmer2.addEventListener('click', () => { toggleModal(); });
 
   let fields = [];
   // TODO: validate localstorage completely

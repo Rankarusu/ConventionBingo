@@ -3,12 +3,6 @@
           box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  :root {
-    font-size: 8px;
-  }
-}
-
 button,
 p,
 a,
@@ -188,7 +182,7 @@ input[type="file"] {
           transform: translateX(-25rem);
   -webkit-transition: .2s ease;
   transition: .2s ease;
-  width: 20rem;
+  width: 16rem;
   z-index: 99;
 }
 
@@ -266,6 +260,13 @@ main {
   max-width: 1200px;
 }
 
+@media (max-width: 480px) {
+  main {
+    min-height: calc(100vh - 4rem);
+    padding: 3.5rem .5rem .5rem;
+  }
+}
+
 .grid-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -289,7 +290,13 @@ main {
       grid-template-columns: repeat(5, 1fr);
   -ms-grid-rows: (1fr)[5];
       grid-template-rows: repeat(5, 1fr);
-  grid-gap: 0.1875rem;
+  grid-gap: 0.1875em;
+}
+
+@media (max-width: 480px) {
+  .bingo-grid {
+    font-size: 9px;
+  }
 }
 
 .bingo-field {
@@ -304,7 +311,7 @@ main {
   aspect-ratio: 1;
   overflow: hidden;
   background-color: #1d1d1d;
-  border-radius: .5rem;
+  border-radius: .5em;
   -webkit-box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
 }
@@ -316,7 +323,7 @@ main {
 }
 
 .bingo-field__inner {
-  border-radius: .5rem;
+  border-radius: .5em;
   width: 100%;
   height: 100%;
   -webkit-box-pack: center;
@@ -330,7 +337,7 @@ main {
 }
 
 .bingo-field__text {
-  padding: 0.25rem;
+  padding: 0.25em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -341,12 +348,18 @@ main {
       -ms-flex-align: center;
           align-items: center;
   aspect-ratio: 1;
-  font-size: 1rem;
-  word-wrap: break-word;
+  font-size: 1em;
+  word-wrap: anywhere;
   -webkit-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
   /* TODO        : https://github.com/STRML/textFit */
+}
+
+@media (max-width: 480px) {
+  .bingo-field__text {
+    line-height: 1;
+  }
 }
 
 .bingo-field__input {
@@ -392,17 +405,33 @@ main {
 .button-container {
   display: -ms-grid;
   display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
+  gap: .5rem;
+}
+
+.button-container__col2 {
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 768px) {
+  .button-container__col2 {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.button-container__col3 {
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
 }
 
 .button-container__text {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 1.5rem;
-  padding: 1.5rem;
+  font-size: 1.125rem;
+  padding: .5rem;
   text-align: center;
   vertical-align: middle;
 }
@@ -412,16 +441,13 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   background-color: #BB86FC;
-  padding: 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
   gap: .5rem;
-  margin: .5rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -445,16 +471,20 @@ main {
 }
 
 .btn--text {
-  padding: .5rem;
-  font-size: 1.5rem;
+  padding: .5rem 1rem .5rem .75rem;
+  font-size: 1.125rem;
+}
+
+.btn--square {
+  padding: 1em;
 }
 
 .btn__img--large {
-  width: 4rem;
+  width: 3rem;
 }
 
 .btn__img--small {
-  width: 1.5rem;
+  width: 1.125rem;
 }
 
 /******************************** EDIT ********************************/
@@ -468,21 +498,27 @@ main {
           flex-direction: row;
   gap: 1rem;
   margin: 1rem 0;
-  padding-right: 1rem;
+}
+
+@media (max-width: 480px) {
+  .search-wrapper {
+    font-size: .75rem;
+  }
 }
 
 .search-bar {
   -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
   color: #ffffff;
-  padding: .5rem;
+  padding: .5em;
   border: none;
   background-color: #1d1d1d;
-  font-size: 2em;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  font-size: 1.5em;
   border-radius: .5rem;
+  min-width: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   border-bottom: #ffffff;
 }
 
@@ -512,6 +548,12 @@ main {
   background-color: #1d1d1d;
 }
 
+@media (max-width: 480px) {
+  .cards-container {
+    font-size: .75rem;
+  }
+}
+
 .card {
   color: .card rgba(255, 255, 255, 0.87);
   display: -webkit-box;
@@ -524,8 +566,8 @@ main {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 1rem;
-  gap: .5rem;
+  padding: 1em;
+  gap: .5em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -655,10 +697,25 @@ main {
           box-shadow: inset 0px 0px 0px 0.125rem #BB86FC;
 }
 
+.modal__footer {
+  padding: .5rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
 /****************** SWIPER ***************/
 .swiper {
   padding: 3rem;
   margin-top: -3rem;
+}
+
+@media (max-width: 480px) {
+  .swiper {
+    padding: 1rem;
+    margin-top: -3rem;
+  }
 }
 
 .swiper-slide > * {
@@ -689,8 +746,8 @@ main {
 
 .message {
   color: #ffffff;
-  padding: 1rem;
-  width: 15rem;
+  padding: 1em;
+  width: 15em;
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -699,16 +756,22 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border-radius: .5rem .5rem 0 0;
-  top: 5rem;
-  right: .5rem;
+  border-radius: .5em .5em 0 0;
+  top: 5em;
+  right: .5em;
   background-color: #242424;
   -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  gap: .5rem;
+  gap: .5em;
   -webkit-animation: fadeInOut 3s;
           animation: fadeInOut 3s;
+}
+
+@media (max-width: 480px) {
+  .message {
+    font-size: .75rem;
+  }
 }
 
 .message__textbox {
@@ -737,11 +800,11 @@ main {
 }
 
 .message__meter {
-  margin-bottom: calc(-1rem - 0.3125rem);
-  margin-left: -1rem;
-  width: calc(100% + 2rem);
-  border-radius: 0 0 .5rem .5rem;
-  height: 0.3125rem;
+  margin-bottom: calc(-1em - 0.3125em);
+  margin-left: -1em;
+  width: calc(100% + 2em);
+  border-radius: 0 0 .5em .5em;
+  height: 0.3125em;
   background: inherit;
   overflow: hidden;
 }
@@ -828,4 +891,14 @@ main {
       -ms-flex-align: center;
           align-items: center;
   gap: 1rem;
+  text-align: block;
+}
+
+@media (max-width: 480px) {
+  .about-text {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }

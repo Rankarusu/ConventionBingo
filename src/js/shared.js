@@ -21,25 +21,25 @@
     <ul class="sidebar__nav-list nav-list">
       <a href="index.html">
         <li class="nav-list__item">
-          <span class="nav-list__icon material-icons md-48">play_arrow</span>
+          <span class="nav-list__icon material-icons md-36">play_arrow</span>
           <span>Play</span>
         </li>
       </a>
       <a href="edit.html">
         <li class="nav-list__item">
-          <span class="nav-list__icon material-icons md-48">edit</span>
+          <span class="nav-list__icon material-icons md-36">edit</span>
           <span>Edit</span>
         </li>
       </a>
       <a href="savedSheets.html">
         <li class="nav-list__item">
-          <span class="nav-list__icon material-icons md-48">file_copy</span>
+          <span class="nav-list__icon material-icons md-36">file_copy</span>
           <span>Saved Sheets</span>
         </li>
       </a>
       <a href="about.html">
       <li class="nav-list__item">
-        <span class="nav-list__icon material-icons md-48">info</span>
+        <span class="nav-list__icon material-icons md-36">info</span>
         <span>About</span>
       </li>
     </a>
