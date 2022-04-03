@@ -523,7 +523,7 @@ main {
 }
 
 .card {
-  color          : &$onSurfaceHighEmphasis;
+  color          : $onSurfaceHighEmphasis;
   display        : flex;
   flex-direction : row;
   justify-content: flex-end;

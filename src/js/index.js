@@ -67,6 +67,8 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
         this.text = modalText.value;
         this.displayText.innerText = modalText.value;
         toggleModal();
+        // eslint-disable-next-line no-use-before-define
+        saveGrid(fields);
       };
     }
   }
@@ -160,6 +162,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
       if (field.checkbox.checked) {
         checkWin(fields, field);
       }
+      saveGrid(fields);
     }));
 
     saveGrid(fields);
@@ -176,6 +179,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
         if (element.checkbox.checked) {
           checkWin(fields, field);
         }
+        saveGrid(fields);
       });
       fields.push(element);
     });
@@ -230,9 +234,5 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
 
   editModeBtn.addEventListener('click', () => {
     toggleEditMode(fields);
-  });
-
-  window.addEventListener('beforeunload', () => {
-    saveGrid(fields);
   });
 }());

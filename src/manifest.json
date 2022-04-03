@@ -1,6 +1,7 @@
 {
   "name": "Convention Bingo",
   "short_name": "ConBingo",
+  "description": "A buzzword-bingo-esque to play with your weeb friends at conventions.",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#121212",
