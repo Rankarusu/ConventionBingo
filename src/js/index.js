@@ -179,10 +179,11 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
         if (element.checkbox.checked) {
           checkWin(fields, field);
         }
-        saveGrid(fields);
       });
       fields.push(element);
     });
+    fields.forEach((field) => field.checkbox.addEventListener('change', () => saveGrid(fields)));
+
     return fields;
   }
 
@@ -217,6 +218,7 @@ import { showMessage, checkCards, bingoFieldTemplate } from './utils.js';
   // TODO: validate localstorage completely
   if (localStorage.getItem('currentSheet')) {
     fields = loadGrid();
+    // console.log(fields);
   } else {
     fields = populateGrid();
   }
