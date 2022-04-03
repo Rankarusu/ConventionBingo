@@ -94,20 +94,25 @@ import {
     const cardText = card.querySelector('[data-text]');
 
     cardText.innerText = field;
-    card.dataset.id = id;
 
-    const fieldObj = new Field(id, field, card);
-    cardsContainer.prepend(card);
-
+    let cardId = id;
+    // a custom version of a database auto increment
     let num = localStorage.getItem('next');
     if (!localStorage.next) {
       num = 0;
     } else {
       num = parseInt(num, 10);
     }
+
     if (id === null) {
+      // when a new card is added.
+      cardId = `card${num}`;
       localStorage.setItem('next', num + 1);
     }
+    card.dataset.id = cardId;
+    const fieldObj = new Field(cardId, field, card);
+    cardsContainer.prepend(card);
+
     return fieldObj;
   }
 
